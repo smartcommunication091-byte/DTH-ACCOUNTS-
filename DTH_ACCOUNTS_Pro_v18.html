@@ -1,0 +1,3752 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#020408">
+<meta name="format-detection" content="telephone=no">
+<title>DTH ACCOUNTS Pro v18</title>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Noto+Sans+Tamil:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Noto+Sans+Tamil:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"></noscript>
+<style>
+/* ═══════════════════════════════════════════════
+   DTH ACCOUNTS PRO v13 — LUXURY DARK THEME
+   Aesthetic: Premium Financial Dashboard
+   Deep space blacks + molten gold + neon accents
+═══════════════════════════════════════════════ */
+/* Font loaded via <link> preload in <head> — @import removed to prevent double fetch */
+
+:root{
+  /* Core Palette */
+  --bg:#020408;
+  --surface:#07090f;
+  --surface2:#0b0e18;
+  --surface3:#0f1420;
+  --surface4:#141a2a;
+  --border:rgba(255,255,255,0.06);
+  --border2:rgba(255,255,255,0.1);
+  --border-gold:rgba(255,185,50,0.2);
+
+  /* Brand Gold */
+  --gold-100:#fff3d0;
+  --gold-300:#ffd166;
+  --gold-500:#f5a623;
+  --gold-700:#c47d0e;
+  --gold-grad:linear-gradient(135deg,#ffd166 0%,#f5a623 50%,#e8831a 100%);
+  --gold-glow:0 0 40px rgba(245,166,35,0.4);
+  --gold-glow-sm:0 0 16px rgba(245,166,35,0.25);
+
+  /* Status Colors */
+  --green:#00f5a0;
+  --green-dim:#00c47e;
+  --green-bg:rgba(0,245,160,0.08);
+  --red:#ff4466;
+  --red-dim:#cc2244;
+  --red-bg:rgba(255,68,102,0.08);
+  --blue:#4da6ff;
+  --blue-bg:rgba(77,166,255,0.08);
+  --pink:#ff6eb4;
+  --pink-bg:rgba(255,110,180,0.08);
+  --teal:#00e5cc;
+  --purple:#c084fc;
+
+  /* Text */
+  --text:#f8faff;
+  --text-secondary:#8899bb;
+  --text-muted:#445577;
+
+  /* Fonts */
+  --font-display:'Syne',sans-serif;
+  --font-tamil:'Noto Sans Tamil',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+
+  /* Geometry */
+  --r-xs:8px;
+  --r-sm:12px;
+  --r-md:18px;
+  --r-lg:24px;
+  --r-xl:32px;
+
+  /* Shadows */
+  --shadow-sm:0 2px 12px rgba(0,0,0,0.4);
+  --shadow-md:0 8px 32px rgba(0,0,0,0.6);
+  --shadow-lg:0 16px 56px rgba(0,0,0,0.8);
+  --shadow-gold:0 8px 32px rgba(245,166,35,0.25);
+  --shadow-green:0 8px 32px rgba(0,245,160,0.15);
+}
+
+/* ── RESET & BASE ── */
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+button,a,[onclick]{touch-action:manipulation}
+::-webkit-scrollbar{width:2px;height:2px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:4px}
+
+html{background:var(--bg);height:100%;overflow:hidden;overscroll-behavior:none}
+body{
+  font-family:var(--font-display);
+  background:var(--bg);
+  color:var(--text);
+  height:100%;
+  overflow:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeSpeed;
+}
+
+/* ambient mesh removed for perf */
+
+/* ══════════════════════════════════════
+   WELCOME / LOGIN SCREEN
+══════════════════════════════════════ */
+#login-screen{
+  position:fixed;inset:0;z-index:500;
+  display:flex;flex-direction:column;
+  align-items:center;
+  padding:24px 16px 40px;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  background:var(--bg);
+}
+
+/* login orbs removed for perf */
+
+/* ── HERO ── */
+.wlc-hero{
+  position:relative;z-index:1;
+  text-align:center;
+  margin-bottom:22px;
+  padding-top:8px;
+}
+.wlc-logo{
+  width:72px;height:72px;
+  background:var(--gold-grad);
+  border-radius:22px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:36px;
+  margin:0 auto 12px;
+  box-shadow:var(--gold-glow-sm);
+}
+.wlc-title{
+  font-size:22px;font-weight:800;
+  background:var(--gold-grad);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;letter-spacing:2px;
+}
+.wlc-sub{
+  font-size:11px;color:var(--text-secondary);
+  margin-top:3px;letter-spacing:0.5px;
+}
+
+/* ── TAB SWITCHER ── */
+.auth-tabs{
+  position:relative;z-index:1;
+  display:flex;
+  width:100%;max-width:400px;
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:4px;
+  margin-bottom:14px;
+  gap:4px;
+}
+.auth-tab{
+  flex:1;padding:10px 0;
+  background:transparent;border:none;
+  border-radius:10px;
+  font-family:var(--font-display);
+  font-size:13px;font-weight:700;
+  color:var(--text-muted);
+  cursor:pointer;transition:all 0.12s;
+  letter-spacing:0.3px;
+}
+.auth-tab.active{
+  background:var(--gold-grad);
+  color:#1a0800;
+  box-shadow:0 4px 16px rgba(245,166,35,0.3);
+}
+.auth-tab:not(.active):active{background:var(--surface3);color:var(--text-secondary)}
+
+/* ── AUTH PANEL (shared card) ── */
+.auth-panel{
+  position:relative;z-index:1;
+  width:100%;max-width:400px;
+  background:var(--surface);
+  border:1px solid var(--border2);
+  border-radius:24px;
+  padding:24px 20px;
+  box-shadow:var(--shadow-lg);
+}
+.auth-greeting{
+  font-size:17px;font-weight:800;
+  color:var(--text);
+  margin-bottom:18px;
+  display:flex;flex-direction:column;gap:2px;
+}
+.auth-greeting span{
+  font-size:10px;font-weight:500;
+  color:var(--text-muted);
+  font-family:var(--font-tamil);
+  letter-spacing:0.3px;
+}
+
+/* ── FIELDS ── */
+.lfield{margin-bottom:13px}
+.lfield label{
+  font-size:9px;font-weight:800;
+  color:var(--text-muted);
+  display:block;margin-bottom:6px;
+  letter-spacing:1.8px;text-transform:uppercase;
+}
+.linput-wrap{
+  position:relative;display:flex;align-items:center;
+  background:var(--surface3);
+  border:1.5px solid var(--border);
+  border-radius:12px;
+  transition:border-color 0.15s,box-shadow 0.15s;
+  overflow:hidden;
+}
+.linput-wrap:focus-within{
+  border-color:var(--gold-500);
+  box-shadow:0 0 0 3px rgba(245,166,35,0.1);
+  background:rgba(245,166,35,0.02);
+}
+.linput-icon{
+  position:absolute;left:12px;
+  font-size:15px;pointer-events:none;line-height:1;
+}
+.linput-wrap input{
+  width:100%;padding:13px 16px 13px 38px;
+  background:transparent;border:none;outline:none;
+  color:var(--text);
+  font-family:var(--font-mono);font-size:14px;
+  -webkit-appearance:none;
+}
+.linput-eye{
+  position:absolute;right:12px;
+  cursor:pointer;font-size:16px;
+  user-select:none;opacity:0.45;
+  padding:4px;transition:opacity 0.15s;
+}
+.linput-eye:active{opacity:1}
+
+/* ── BUTTONS ── */
+.btn-login{
+  width:100%;padding:15px;
+  margin-top:4px;
+  background:var(--gold-grad);
+  border:none;border-radius:12px;
+  font-family:var(--font-display);
+  font-size:15px;font-weight:800;
+  color:#1a0800;cursor:pointer;
+  letter-spacing:1px;
+  box-shadow:0 6px 24px rgba(245,166,35,0.35);
+  transition:transform 0.12s,filter 0.12s;
+}
+.btn-login:active{transform:scale(0.97);filter:brightness(0.9)}
+
+.btn-signup-submit{
+  width:100%;padding:15px;
+  background:linear-gradient(135deg,#00c47e,#00f5a0);
+  border:none;border-radius:12px;
+  font-family:var(--font-display);
+  font-size:15px;font-weight:800;
+  color:#00200f;cursor:pointer;
+  letter-spacing:1px;
+  box-shadow:0 6px 24px rgba(0,245,160,0.28);
+  transition:transform 0.12s,filter 0.12s;
+  margin-top:4px;
+}
+.btn-signup-submit:active{transform:scale(0.97);filter:brightness(0.9)}
+
+/* ── MESSAGES ── */
+.login-err{
+  background:var(--red-bg);border:1px solid rgba(255,68,102,0.3);
+  border-radius:10px;padding:9px 13px;
+  font-size:11px;font-weight:700;color:var(--red);
+  margin:10px 0 4px;text-align:center;display:none;
+  animation:shake 0.35s ease;
+}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.signup-err{
+  background:var(--red-bg);border:1px solid rgba(255,68,102,0.3);
+  border-radius:10px;padding:9px 13px;
+  font-size:11px;font-weight:700;color:var(--red);
+  margin:10px 0 0;text-align:center;display:none;
+  animation:shake 0.35s ease;
+}
+.signup-success{
+  background:var(--green-bg);border:1px solid rgba(0,245,160,0.3);
+  border-radius:10px;padding:9px 13px;
+  font-size:11px;font-weight:700;color:var(--green);
+  margin:10px 0 0;text-align:center;display:none;
+}
+
+/* ── SWITCH LINK ── */
+.auth-switch{
+  margin-top:16px;text-align:center;
+  font-size:11px;color:var(--text-muted);
+}
+.auth-switch span{
+  color:var(--gold-500);font-weight:700;
+  cursor:pointer;margin-left:4px;
+}
+.auth-switch span:active{opacity:0.7}
+
+/* biz-banner removed */
+
+/* ══════════════════════════════════════
+   MAIN APP
+══════════════════════════════════════ */
+#app{
+  display:none;
+  position:fixed;
+  top:0;left:0;right:0;bottom:0;
+  z-index:1;
+}
+
+/* Scrollable content area — sits between fixed header and fixed nav */
+#page-scroll-area{
+  position:absolute;
+  top:88px; /* header height */
+  left:0;right:0;
+  bottom:calc(56px + env(safe-area-inset-bottom)); /* nav height */
+  overflow-y:auto;
+  overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior:contain;
+  touch-action:pan-y;
+}
+
+/* ── HEADER ── */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:#020408;
+  border-bottom:1px solid var(--border);
+  transform:translateZ(0);
+}
+header::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(245,166,35,0.25),transparent);
+  pointer-events:none;
+}
+.header-inner{
+  padding:10px 14px;
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+}
+.logo-wrap{
+  width:42px;height:42px;min-width:42px;
+  background:var(--gold-grad);
+  border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;
+  box-shadow:var(--gold-glow-sm),0 0 0 1px rgba(245,166,35,0.2);
+  flex-shrink:0;
+}
+.company-name{
+  font-size:13px;font-weight:800;line-height:1.2;letter-spacing:0.5px;
+  color:var(--text);
+}
+.company-name span{
+  display:block;font-size:9px;font-weight:500;
+  color:var(--text-muted);letter-spacing:0.3px;
+}
+.hd-right{display:flex;align-items:center;gap:5px}
+.rate-pill{
+  background:var(--surface3);
+  border:1px solid var(--border);
+  border-radius:20px;padding:5px 10px;
+  font-size:10px;font-weight:700;color:var(--text-secondary);
+  cursor:pointer;white-space:nowrap;
+  transition:transform 0.12s,background 0.12s;
+}
+.rate-pill:active{transform:scale(0.93);background:var(--surface4)}.logout-btn{
+  background:rgba(255,68,102,0.1);
+  border:1.5px solid rgba(255,68,102,0.25);
+  border-radius:20px;padding:6px 12px;
+  font-size:11px;font-weight:800;color:var(--red);
+  cursor:pointer;transition:transform 0.12s,background 0.12s;
+  display:flex;align-items:center;gap:4px;
+}
+.logout-btn:active{transform:scale(0.93);background:rgba(255,68,102,0.2)}
+
+/* Header Strip */
+.header-strip{
+  display:flex;gap:8px;padding:6px 14px 8px;
+  overflow-x:auto;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.header-strip::-webkit-scrollbar{display:none}
+.strip-item{
+  flex-shrink:0;
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:var(--r-xs);
+  padding:4px 10px;
+  font-size:9px;font-weight:600;color:var(--text-muted);
+  line-height:1.4;white-space:nowrap;
+}
+.strip-item .sv{color:var(--gold-500);font-family:var(--font-mono);font-size:9px}
+
+/* ── TOAST ── */
+.toast{
+  position:fixed;bottom:90px;left:50%;
+  transform:translateX(-50%) translateY(20px);
+  background:#07090f;
+  border:1px solid var(--border2);
+  border-radius:var(--r-md);
+  padding:10px 18px;
+  font-size:12px;font-weight:700;color:var(--text);
+  z-index:9998;opacity:0;transition:opacity 0.2s,transform 0.2s;
+  white-space:nowrap;max-width:90vw;
+  box-shadow:var(--shadow-md);
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.ok{border-color:rgba(0,245,160,0.35);color:var(--green)}
+.toast.err{border-color:rgba(255,68,102,0.35);color:var(--red)}
+
+/* ── PAGES ── */
+.page{display:none;min-height:100%;padding-bottom:20px}
+.page.active{display:block;animation:pageIn 0.18s ease}
+@keyframes pageIn{from{opacity:0}to{opacity:1}}
+
+/* ── NAV ── */
+nav{
+  position:fixed;bottom:0;left:0;right:0;z-index:9999;
+  background:#020408;
+  border-top:1px solid var(--border);
+  display:flex;
+  padding-bottom:env(safe-area-inset-bottom);
+  box-shadow:0 -1px 0 rgba(245,166,35,0.1),0 -8px 32px rgba(0,0,0,0.6);
+  transform:translateZ(0);
+}
+nav button{
+  flex:1;padding:10px 4px 8px;
+  background:transparent;border:none;
+  font-family:var(--font-display);font-size:8.5px;font-weight:700;
+  color:var(--text-muted);cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  transition:color 0.18s;letter-spacing:0.3px;text-transform:uppercase;
+  position:relative;
+}
+nav button .icon{font-size:18px;transition:transform 0.18s;display:block}
+nav button.active{color:var(--gold-500)}
+nav button.active .icon{transform:scale(1.12)}
+nav button.active::before{
+  content:'';
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:32px;height:2px;
+  background:var(--gold-grad);
+  border-radius:0 0 4px 4px;
+  box-shadow:0 0 8px rgba(245,166,35,0.5);
+}
+nav button:not(.active):active .icon{transform:scale(0.88)}
+
+/* ── SECTION TITLE ── */
+.section{padding:0 14px 4px}
+.section-title{
+  font-size:11px;font-weight:800;
+  color:var(--text-secondary);
+  text-transform:uppercase;letter-spacing:2px;
+  padding:12px 0 8px;
+  display:flex;align-items:center;gap:8px;
+}
+.section-title::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(90deg,var(--border2),transparent);
+}
+
+/* ── SUMMARY CARDS ── */
+.summary{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:10px;padding:14px 14px 8px;
+}
+.sum-card{
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:var(--r-lg);
+  padding:14px 10px;text-align:center;
+  position:relative;overflow:hidden;
+  transition:transform 0.18s;
+  box-shadow:var(--shadow-sm);
+}
+.sum-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.025) 0%,transparent 60%);
+  pointer-events:none;
+}
+.sum-card::after{
+  content:'';position:absolute;
+  top:-20px;right:-20px;width:60px;height:60px;
+  border-radius:50%;
+  background:rgba(0,245,160,0.07);
+}
+.sum-card.orange::after{background:rgba(245,166,35,0.09)}
+.sum-card.blue::after{background:rgba(77,166,255,0.07)}
+.sum-card .label{
+  font-size:7px;color:var(--text-muted);font-weight:700;
+  text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;line-height:1.4;
+}
+.sum-card .ta-label{font-family:var(--font-tamil);font-size:7px;color:var(--text-muted);display:block}
+.sum-card .amount{font-size:15px;font-weight:800;color:var(--green);font-family:var(--font-mono)}
+.sum-card.orange .amount{color:var(--gold-500)}
+.sum-card.blue .amount{color:var(--blue)}
+.sum-card .sub{font-size:8px;color:var(--text-muted);margin-top:3px;font-family:var(--font-mono)}
+
+/* ── CASHPEND BAR ── */
+.cashpend-bar{
+  margin:0 14px 10px;
+  background:var(--pink-bg);
+  border:1px solid rgba(255,110,180,0.2);
+  border-radius:var(--r-sm);
+  padding:8px 14px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.cashpend-bar .cl{font-size:9px;font-weight:800;color:var(--pink)}
+
+/* ── WALLETS ── */
+.wallets{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.wallet-card{transform:translateZ(0);
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:var(--r-lg);
+  padding:14px 12px;
+  position:relative;overflow:hidden;
+  transition:border-color 0.2s,box-shadow 0.2s;
+}
+.wallet-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--gold-grad);opacity:0.6;
+}
+.wallet-card .wname{font-size:10px;font-weight:800;letter-spacing:0.3px;color:var(--text)}
+.wallet-card .wbal{
+  font-size:18px;font-weight:800;
+  font-family:var(--font-mono);color:var(--green);
+  margin:4px 0 2px;
+}
+.wallet-card .wbal.low{color:var(--red)!important}
+.wallet-card .wstatus{font-size:8px;color:var(--text-muted);font-weight:500}
+.wcard-btns{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:10px}
+.wbtn{
+  padding:7px 4px;
+  background:var(--surface3);
+  border:1px solid var(--border);
+  border-radius:var(--r-xs);
+  font-family:var(--font-display);font-size:9px;font-weight:700;
+  color:var(--text-secondary);cursor:pointer;
+  transition:all 0.1s;text-align:center;
+}
+.wbtn:active{transform:scale(0.93);opacity:0.8}
+
+/* ── FORM CARD ── */
+.form-card{contain:layout style;
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:var(--r-lg);
+  padding:18px 16px;margin:0 14px 12px;
+  box-shadow:var(--shadow-sm);
+  position:relative;overflow:hidden;
+}
+.form-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);
+  pointer-events:none;
+}
+.form-card h3{
+  font-size:11px;font-weight:800;
+  color:var(--text-secondary);
+  text-transform:uppercase;letter-spacing:2px;
+  margin-bottom:14px;
+  display:flex;align-items:center;gap:8px;
+}
+.form-card h3::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(90deg,var(--border2),transparent);
+}
+
+/* EXCHANGE BOX */
+.exchange-box{
+  background:var(--surface3);
+  border:1px solid var(--border);
+  border-radius:var(--r-md);
+  padding:14px 12px;margin-bottom:12px;
+}
+.exchange-box .ex-title{
+  font-size:9px;font-weight:800;color:var(--text-muted);
+  text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;
+  display:flex;align-items:center;gap:6px;
+}
+.exchange-box .ex-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.exchange-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ex-item{
+  text-align:center;
+  background:var(--surface4);
+  border-radius:var(--r-sm);
+  padding:10px 8px;
+}
+.ex-item .ei-label{font-size:8px;color:var(--text-muted);font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.ex-item .ei-val{font-size:20px;font-weight:800;font-family:var(--font-mono);margin-top:2px}
+.ei-buy{color:var(--red)}
+.ei-sell{color:var(--green)}
+
+/* FIELD */
+.field{margin-bottom:10px}
+.field label{
+  font-size:10px;font-weight:700;color:var(--text-secondary);
+  display:block;margin-bottom:6px;letter-spacing:0.5px;
+}
+.field label .ta{
+  font-family:var(--font-tamil);font-size:9px;
+  color:var(--text-muted);margin-left:4px;
+}
+.field input,.field select{
+  width:100%;padding:12px 14px;
+  background:var(--surface3);
+  border:1.5px solid var(--border);
+  border-radius:var(--r-sm);
+  color:var(--text);font-family:var(--font-display);font-size:14px;
+  outline:none;transition:all 0.2s;
+}
+.field input:focus,.field select:focus{
+  border-color:var(--gold-500);
+  background:rgba(245,166,35,0.04);
+  box-shadow:0 0 0 3px rgba(245,166,35,0.1);
+}
+.field select option{background:var(--surface2);color:var(--text)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}
+
+/* CALC BOX */
+.calc-box{
+  background:var(--surface3);
+  border:1px solid var(--border);
+  border-radius:var(--r-md);
+  padding:12px;margin-bottom:10px;
+}
+.calc-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:5px 0;border-bottom:1px solid var(--border);
+}
+.calc-row:last-child{border-bottom:none}
+.calc-row.profit-row{padding-top:8px}
+.clabel{color:var(--text-muted);font-size:11px;font-weight:600}
+.cval{font-weight:800;font-family:var(--font-mono);color:var(--text);font-size:12px}
+.profit-big{font-size:18px!important;color:var(--green)!important}
+.profit-big.neg{color:var(--red)!important}
+
+/* SEGMENT */
+.segment{
+  display:flex;background:var(--surface3);
+  border-radius:var(--r-sm);padding:3px;
+  margin-bottom:12px;gap:3px;
+}
+.segment button{
+  flex:1;padding:8px 4px;
+  background:transparent;border:none;
+  border-radius:10px;
+  font-family:var(--font-display);font-size:11px;font-weight:700;
+  color:var(--text-muted);cursor:pointer;transition:all 0.2s;
+}
+.segment button.active{
+  background:var(--surface);
+  color:var(--gold-500);
+  box-shadow:var(--shadow-sm);
+}
+
+/* NOTES */
+.cashpend-note,.credit-note-box{
+  background:var(--surface3);
+  border:1px solid var(--border);
+  border-radius:var(--r-md);
+  padding:12px;margin-bottom:10px;
+  font-size:11px;color:var(--text-secondary);line-height:1.6;
+}
+.credit-note-box{padding:14px}
+
+/* PROFIT REINVEST BOX */
+.reinvest-box{
+  background:linear-gradient(135deg,var(--green-bg),transparent);
+  border:1px solid rgba(0,245,160,0.15);
+  border-radius:var(--r-md);padding:14px;margin-bottom:12px;
+}
+.reinvest-avail{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:10px;
+}
+.reinvest-avail .ra-label{font-size:9px;color:var(--text-muted);font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.reinvest-avail .ra-val{font-size:16px;font-weight:800;color:var(--green);font-family:var(--font-mono)}
+
+/* BUTTONS */
+.btn{
+  padding:11px 16px;
+  background:var(--surface3);
+  border:1px solid var(--border2);
+  border-radius:var(--r-sm);
+  font-family:var(--font-display);font-size:12px;font-weight:700;
+  color:var(--text);cursor:pointer;
+  transition:all 0.1s;text-align:center;
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+}
+.btn:active{transform:scale(0.96);opacity:0.85}
+.btn-orange{
+  background:var(--gold-grad);color:#1a0800;
+  border-color:transparent;box-shadow:var(--shadow-gold);
+}
+.btn-orange:active{filter:brightness(0.92)}
+.btn-green{
+  background:linear-gradient(135deg,var(--green),var(--green-dim));
+  color:#002a1a;border-color:transparent;box-shadow:var(--shadow-green);
+}
+.btn-red{
+  background:linear-gradient(135deg,var(--red),var(--red-dim));
+  color:#fff;border-color:transparent;
+}
+.btn-blue{
+  background:linear-gradient(135deg,var(--blue),#3380cc);
+  color:#001433;border-color:transparent;
+}
+.btn-sm{padding:7px 12px;font-size:11px}
+.btn-full{width:100%}
+.btn-pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+/* ── HISTORY LIST ── */
+.hist-item{
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:var(--r-md);
+  padding:12px 14px;margin-bottom:8px;
+  display:grid;grid-template-columns:1fr auto;gap:8px;
+  contain:layout style paint;
+  transition:border-color 0.18s;
+}
+
+#history-list .hist-item{content-visibility:auto;contain-intrinsic-size:0 88px}
+#credit-list .credit-item,#cashpend-list .cashpend-item{content-visibility:auto;contain-intrinsic-size:0 120px}
+.hist-item:active{border-color:var(--border2)}
+.hi-name{font-size:13px;font-weight:700;color:var(--text)}
+.hi-meta{font-size:9px;color:var(--text-muted);margin-top:3px;line-height:1.5}
+.hi-type{
+  display:inline-block;
+  padding:2px 8px;border-radius:20px;
+  font-size:8px;font-weight:800;letter-spacing:0.5px;text-transform:uppercase;
+}
+.type-buy{background:var(--blue-bg);color:var(--blue);border:1px solid rgba(77,166,255,0.2)}
+.type-sell{background:var(--green-bg);color:var(--green);border:1px solid rgba(0,245,160,0.2)}
+.type-new{background:rgba(245,166,35,0.1);color:var(--gold-500);border:1px solid rgba(245,166,35,0.2)}
+.hi-right{text-align:right}
+.hi-profit{font-size:14px;font-weight:800;font-family:var(--font-mono);color:var(--green)}
+.hi-profit.neg{color:var(--red)}
+.del-btn{
+  background:var(--red-bg);border:1px solid rgba(255,68,102,0.2);
+  border-radius:var(--r-xs);padding:5px 10px;
+  font-size:10px;font-weight:700;color:var(--red);
+  cursor:pointer;margin-top:6px;
+  transition:all 0.15s;
+}
+.del-btn:active{background:rgba(255,68,102,0.2);transform:scale(0.93)}
+
+/* ── CREDIT ITEMS ── */
+.credit-item{
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:var(--r-md);
+  padding:12px 14px;margin-bottom:8px;
+  contain:layout style paint;
+}
+.ci-top{display:flex;justify-content:space-between;align-items:flex-start}
+.ci-name{font-size:13px;font-weight:700;color:var(--text)}
+.ci-amount{font-size:15px;font-weight:800;font-family:var(--font-mono);color:var(--red)}
+.ci-meta{font-size:9px;color:var(--text-muted);margin-top:4px;line-height:1.5}
+.ci-btns{display:flex;gap:6px;margin-top:8px}
+
+/* ── CASHPEND ITEMS ── */
+.cashpend-item{
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:var(--r-md);
+  padding:12px 14px;margin-bottom:8px;
+  contain:layout style paint;
+}
+
+/* ── COMMISSION ── */
+.comm-company-card{
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:var(--r-lg);
+  padding:14px;margin-bottom:10px;
+  contain:layout style paint;
+}
+.comm-company-card h4{
+  font-size:12px;font-weight:800;color:var(--text);
+  margin-bottom:10px;
+  display:flex;align-items:center;gap:8px;
+}
+.comm-company-card h4::after{content:'';flex:1;height:1px;background:var(--border)}
+.comm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.comm-item{
+  background:var(--surface3);
+  border-radius:var(--r-sm);padding:8px 6px;
+  text-align:center;
+}
+.comm-item .ci-label{font-size:8px;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
+.comm-item .ci-val{font-size:13px;font-weight:800;font-family:var(--font-mono);color:var(--gold-500);margin-top:2px}
+
+/* ── MODAL ── */
+.modal-overlay{
+  position:fixed;inset:0;z-index:500;
+  background:rgba(0,0,0,0.75);
+  display:flex;align-items:flex-end;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.18s ease;
+}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-box{
+  width:100%;max-width:500px;
+  background:var(--surface);
+  border:1px solid var(--border2);
+  border-radius:var(--r-xl) var(--r-xl) 0 0;
+  padding:20px 20px 36px;
+  max-height:88vh;overflow-y:auto;
+  transform:translateY(100%);
+  transition:transform 0.22s cubic-bezier(0.32,0.72,0,1);
+  position:relative;
+}
+.modal-box::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent);
+}
+.modal-overlay.open .modal-box{transform:translateY(0)}
+.modal-handle{
+  width:36px;height:4px;
+  background:var(--border2);
+  border-radius:4px;margin:0 auto 18px;
+}
+.modal-box h3{
+  font-size:14px;font-weight:800;
+  margin-bottom:16px;color:var(--text);
+  letter-spacing:0.3px;
+}
+
+/* ── SETTINGS ── */
+.settings-group{margin-bottom:16px}
+.settings-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:12px 14px;
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:var(--r-sm);
+  margin-bottom:6px;
+}
+.settings-row .sr-label{font-size:12px;font-weight:700;color:var(--text)}
+.settings-row .sr-val{font-size:12px;font-weight:700;color:var(--gold-500);font-family:var(--font-mono)}
+
+/* ── EMPTY STATE ── */
+.empty-state{
+  text-align:center;padding:40px 20px;
+  color:var(--text-muted);font-size:12px;
+}
+.empty-state .es-icon{font-size:36px;margin-bottom:10px;display:block;opacity:0.5}
+
+/* ── FILTER BAR ── */
+.filter-bar{
+  display:flex;gap:6px;padding:6px 14px;
+  overflow-x:auto;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.filter-bar::-webkit-scrollbar{display:none}
+.filter-chip{
+  flex-shrink:0;
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:20px;padding:5px 12px;
+  font-size:10px;font-weight:700;color:var(--text-muted);
+  cursor:pointer;transition:all 0.15s;white-space:nowrap;
+}
+.filter-chip.active{
+  background:rgba(245,166,35,0.12);
+  border-color:rgba(245,166,35,0.3);
+  color:var(--gold-500);
+}
+.filter-chip:active{transform:scale(0.95)}
+
+/* ── PERF ── */
+.hist-item,.credit-item,.cashpend-item,.comm-company-card{contain:layout style paint}
+
+/* ── MISC ── */
+.spacer{height:12px}
+.divider{height:1px;background:var(--border);margin:12px 0}
+.badge{
+  display:inline-block;
+  padding:2px 8px;border-radius:20px;
+  font-size:9px;font-weight:800;letter-spacing:0.5px;
+}
+.badge-green{background:var(--green-bg);color:var(--green)}
+.badge-red{background:var(--red-bg);color:var(--red)}
+.badge-gold{background:rgba(245,166,35,0.1);color:var(--gold-500)}
+
+/* ── PERF: GPU composite layer only for animated elements ── */
+.modal-overlay{transform:translateZ(0)}
+.modal-box{will-change:transform}
+.page.active{will-change:opacity}
+
+/* ── ACTIVE STATE: fast tactile feedback ── */
+.btn:active,.btn-sm:active,.wbtn:active,.del-btn:active,
+.hist-item:active,.credit-item:active{
+  transition:transform 0.08s,opacity 0.08s !important;
+}
+
+/* ── SMOOTH SCROLLING ── */
+.modal-box{
+  -webkit-overflow-scrolling:touch;
+  scroll-behavior:smooth;
+}
+#page-scroll-area{scroll-behavior:smooth;}
+
+/* ── PREVENT LAYOUT SHIFTS ── */
+.sum-card .amount{min-height:22px;display:block}
+.wallet-card .wbal{min-height:26px;display:block}
+
+/* ── PERF: virtual rendering for long lists ── */
+.hist-item{content-visibility:auto;contain-intrinsic-size:0 90px;contain:layout style paint}
+.credit-item{content-visibility:auto;contain-intrinsic-size:0 80px;contain:layout style paint}
+.cashpend-item{content-visibility:auto;contain-intrinsic-size:0 80px;contain:layout style paint}
+.comm-company-card{contain:layout style paint}
+</style>
+</head>
+<body>
+
+<!-- ════════ LOGIN SCREEN ════════ -->
+<div id="login-screen">
+
+  <!-- HERO HEADER -->
+  <div class="wlc-hero">
+    <div class="wlc-logo">📡</div>
+    <div class="wlc-title">DTH ACCOUNTS Pro</div>
+    <div class="wlc-sub">Premium DTH Billing Tracker</div>
+    <div class="wlc-sub" style="font-family:var(--font-tamil);font-size:10px;margin-top:2px;opacity:0.6">DTH கணக்கு டிராக்கர்</div>
+  </div>
+
+  <!-- ════ TAB SWITCHER ════ -->
+  <div class="auth-tabs" id="auth-tabs">
+    <button class="auth-tab active" id="tab-login" onclick="switchTab('login')">🔐 Login</button>
+    <button class="auth-tab" id="tab-signup" onclick="switchTab('signup')">✨ Sign Up</button>
+  </div>
+
+  <!-- ════ LOGIN PANEL ════ -->
+  <div class="auth-panel" id="login-card">
+
+    <div class="auth-greeting">Welcome Back! 👋<span>உள்நுழைக</span></div>
+
+    <div class="lfield">
+      <label>LOGIN ID</label>
+      <div class="linput-wrap">
+        <span class="linput-icon">👤</span>
+        <input type="text" id="login-id" placeholder="Enter your Login ID" autocomplete="username" oninput="clearLoginErr()">
+      </div>
+    </div>
+
+    <div class="lfield">
+      <label>PASSWORD</label>
+      <div class="linput-wrap">
+        <span class="linput-icon">🔒</span>
+        <input type="password" id="login-pwd" placeholder="Enter your Password" autocomplete="current-password" oninput="clearLoginErr()">
+        <span class="linput-eye" onclick="togglePwd('login-pwd',this)">👁️</span>
+      </div>
+    </div>
+
+    <div class="login-err" id="login-err">❌ Wrong ID or Password!</div>
+
+    <button class="btn-login" onclick="doLogin()">🚀 LOGIN</button>
+
+    <div class="auth-switch">
+      Don't have an account?
+      <span onclick="switchTab('signup')">Create Account →</span>
+    </div>
+  </div>
+
+  <!-- ════ SIGNUP PANEL ════ -->
+  <div class="auth-panel" id="signup-panel" style="display:none">
+
+    <div class="auth-greeting">Create Account ✨<span>புதிய கணக்கு</span></div>
+
+    <div class="lfield">
+      <label>BUSINESS NAME</label>
+      <div class="linput-wrap">
+        <span class="linput-icon">🏢</span>
+        <input type="text" id="login-biz" placeholder="Your Business Name" autocomplete="organization" oninput="previewBizName(this.value)">
+      </div>
+    </div>
+
+    <div class="lfield">
+      <label>FULL NAME</label>
+      <div class="linput-wrap">
+        <span class="linput-icon">🙍</span>
+        <input type="text" id="su-name" placeholder="Your full name" autocomplete="name" oninput="clearSignupMsg()">
+      </div>
+    </div>
+
+    <div class="lfield">
+      <label>MOBILE NUMBER</label>
+      <div style="display:flex;gap:8px">
+        <!-- Country Code Dropdown -->
+        <div style="position:relative;width:130px;flex-shrink:0" id="cc-dropdown-wrap">
+          <div id="cc-selected" onclick="toggleCCDropdown()" style="
+            display:flex;align-items:center;gap:6px;
+            background:var(--surface3);border:1.5px solid var(--border);
+            border-radius:12px;padding:13px 10px;cursor:pointer;
+            font-family:var(--font-mono);font-size:13px;font-weight:800;
+            color:var(--text);white-space:nowrap;overflow:hidden;
+            transition:border-color 0.15s;
+          ">
+            <span id="cc-flag" style="font-size:16px">🇮🇳</span>
+            <span id="cc-code" style="color:var(--gold-300)">+91</span>
+            <span style="margin-left:auto;color:var(--text-muted);font-size:10px">▼</span>
+          </div>
+          <!-- Dropdown Panel -->
+          <div id="cc-panel" style="
+            display:none;position:absolute;top:calc(100% + 6px);left:0;
+            width:280px;max-height:260px;
+            background:var(--surface2);border:1.5px solid var(--border2);
+            border-radius:14px;z-index:9999;overflow:hidden;
+            box-shadow:var(--shadow-lg);
+          ">
+            <div style="padding:8px">
+              <input type="text" id="cc-search" placeholder="🔍 Search country..." oninput="filterCC(this.value)" style="
+                width:100%;padding:9px 12px;background:var(--surface3);
+                border:1.5px solid var(--border);border-radius:10px;
+                color:var(--text);font-family:var(--font-display);font-size:12px;
+                outline:none;
+              ">
+            </div>
+            <div id="cc-list" style="overflow-y:auto;max-height:200px;padding:0 6px 6px"></div>
+          </div>
+        </div>
+        <!-- Mobile Number Input -->
+        <div class="linput-wrap" style="flex:1">
+          <span class="linput-icon">📱</span>
+          <input type="tel" id="su-mobile" placeholder="Mobile number" autocomplete="tel-national" oninput="clearSignupMsg()">
+        </div>
+      </div>
+      <input type="hidden" id="su-cc" value="+91">
+    </div>
+
+    <style>
+    .cc-item{
+      display:flex;align-items:center;gap:8px;
+      padding:9px 10px;border-radius:10px;cursor:pointer;
+      font-size:12px;color:var(--text);transition:background 0.1s;
+    }
+    .cc-item:active,.cc-item:hover{background:var(--surface3)}
+    .cc-item .ci-flag{font-size:16px;flex-shrink:0}
+    .cc-item .ci-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;color:var(--text-secondary)}
+    .cc-item .ci-dial{font-family:var(--font-mono);font-weight:800;color:var(--gold-300);font-size:12px;flex-shrink:0}
+    </style>
+
+    <script>
+    const ALL_COUNTRIES=[
+      {f:"🇦🇫",n:"Afghanistan",d:"+93"},
+      {f:"🇦🇱",n:"Albania",d:"+355"},
+      {f:"🇩🇿",n:"Algeria",d:"+213"},
+      {f:"🇦🇩",n:"Andorra",d:"+376"},
+      {f:"🇦🇴",n:"Angola",d:"+244"},
+      {f:"🇦🇬",n:"Antigua & Barbuda",d:"+1268"},
+      {f:"🇦🇷",n:"Argentina",d:"+54"},
+      {f:"🇦🇲",n:"Armenia",d:"+374"},
+      {f:"🇦🇺",n:"Australia",d:"+61"},
+      {f:"🇦🇹",n:"Austria",d:"+43"},
+      {f:"🇦🇿",n:"Azerbaijan",d:"+994"},
+      {f:"🇧🇸",n:"Bahamas",d:"+1242"},
+      {f:"🇧🇭",n:"Bahrain",d:"+973"},
+      {f:"🇧🇩",n:"Bangladesh",d:"+880"},
+      {f:"🇧🇧",n:"Barbados",d:"+1246"},
+      {f:"🇧🇾",n:"Belarus",d:"+375"},
+      {f:"🇧🇪",n:"Belgium",d:"+32"},
+      {f:"🇧🇿",n:"Belize",d:"+501"},
+      {f:"🇧🇯",n:"Benin",d:"+229"},
+      {f:"🇧🇹",n:"Bhutan",d:"+975"},
+      {f:"🇧🇴",n:"Bolivia",d:"+591"},
+      {f:"🇧🇦",n:"Bosnia & Herzegovina",d:"+387"},
+      {f:"🇧🇼",n:"Botswana",d:"+267"},
+      {f:"🇧🇷",n:"Brazil",d:"+55"},
+      {f:"🇧🇳",n:"Brunei",d:"+673"},
+      {f:"🇧🇬",n:"Bulgaria",d:"+359"},
+      {f:"🇧🇫",n:"Burkina Faso",d:"+226"},
+      {f:"🇧🇮",n:"Burundi",d:"+257"},
+      {f:"🇨🇻",n:"Cabo Verde",d:"+238"},
+      {f:"🇰🇭",n:"Cambodia",d:"+855"},
+      {f:"🇨🇲",n:"Cameroon",d:"+237"},
+      {f:"🇨🇦",n:"Canada",d:"+1"},
+      {f:"🇨🇫",n:"Central African Rep.",d:"+236"},
+      {f:"🇹🇩",n:"Chad",d:"+235"},
+      {f:"🇨🇱",n:"Chile",d:"+56"},
+      {f:"🇨🇳",n:"China",d:"+86"},
+      {f:"🇨🇴",n:"Colombia",d:"+57"},
+      {f:"🇰🇲",n:"Comoros",d:"+269"},
+      {f:"🇨🇬",n:"Congo",d:"+242"},
+      {f:"🇨🇩",n:"Congo (DRC)",d:"+243"},
+      {f:"🇨🇷",n:"Costa Rica",d:"+506"},
+      {f:"🇭🇷",n:"Croatia",d:"+385"},
+      {f:"🇨🇺",n:"Cuba",d:"+53"},
+      {f:"🇨🇾",n:"Cyprus",d:"+357"},
+      {f:"🇨🇿",n:"Czech Republic",d:"+420"},
+      {f:"🇩🇰",n:"Denmark",d:"+45"},
+      {f:"🇩🇯",n:"Djibouti",d:"+253"},
+      {f:"🇩🇲",n:"Dominica",d:"+1767"},
+      {f:"🇩🇴",n:"Dominican Republic",d:"+1809"},
+      {f:"🇪🇨",n:"Ecuador",d:"+593"},
+      {f:"🇪🇬",n:"Egypt",d:"+20"},
+      {f:"🇸🇻",n:"El Salvador",d:"+503"},
+      {f:"🇬🇶",n:"Equatorial Guinea",d:"+240"},
+      {f:"🇪🇷",n:"Eritrea",d:"+291"},
+      {f:"🇪🇪",n:"Estonia",d:"+372"},
+      {f:"🇸🇿",n:"Eswatini",d:"+268"},
+      {f:"🇪🇹",n:"Ethiopia",d:"+251"},
+      {f:"🇫🇯",n:"Fiji",d:"+679"},
+      {f:"🇫🇮",n:"Finland",d:"+358"},
+      {f:"🇫🇷",n:"France",d:"+33"},
+      {f:"🇬🇦",n:"Gabon",d:"+241"},
+      {f:"🇬🇲",n:"Gambia",d:"+220"},
+      {f:"🇬🇪",n:"Georgia",d:"+995"},
+      {f:"🇩🇪",n:"Germany",d:"+49"},
+      {f:"🇬🇭",n:"Ghana",d:"+233"},
+      {f:"🇬🇷",n:"Greece",d:"+30"},
+      {f:"🇬🇩",n:"Grenada",d:"+1473"},
+      {f:"🇬🇹",n:"Guatemala",d:"+502"},
+      {f:"🇬🇳",n:"Guinea",d:"+224"},
+      {f:"🇬🇼",n:"Guinea-Bissau",d:"+245"},
+      {f:"🇬🇾",n:"Guyana",d:"+592"},
+      {f:"🇭🇹",n:"Haiti",d:"+509"},
+      {f:"🇭🇳",n:"Honduras",d:"+504"},
+      {f:"🇭🇺",n:"Hungary",d:"+36"},
+      {f:"🇮🇸",n:"Iceland",d:"+354"},
+      {f:"🇮🇳",n:"India",d:"+91"},
+      {f:"🇮🇩",n:"Indonesia",d:"+62"},
+      {f:"🇮🇷",n:"Iran",d:"+98"},
+      {f:"🇮🇶",n:"Iraq",d:"+964"},
+      {f:"🇮🇪",n:"Ireland",d:"+353"},
+      {f:"🇮🇱",n:"Israel",d:"+972"},
+      {f:"🇮🇹",n:"Italy",d:"+39"},
+      {f:"🇯🇲",n:"Jamaica",d:"+1876"},
+      {f:"🇯🇵",n:"Japan",d:"+81"},
+      {f:"🇯🇴",n:"Jordan",d:"+962"},
+      {f:"🇰🇿",n:"Kazakhstan",d:"+7"},
+      {f:"🇰🇪",n:"Kenya",d:"+254"},
+      {f:"🇰🇮",n:"Kiribati",d:"+686"},
+      {f:"🇰🇼",n:"Kuwait",d:"+965"},
+      {f:"🇰🇬",n:"Kyrgyzstan",d:"+996"},
+      {f:"🇱🇦",n:"Laos",d:"+856"},
+      {f:"🇱🇻",n:"Latvia",d:"+371"},
+      {f:"🇱🇧",n:"Lebanon",d:"+961"},
+      {f:"🇱🇸",n:"Lesotho",d:"+266"},
+      {f:"🇱🇷",n:"Liberia",d:"+231"},
+      {f:"🇱🇾",n:"Libya",d:"+218"},
+      {f:"🇱🇮",n:"Liechtenstein",d:"+423"},
+      {f:"🇱🇹",n:"Lithuania",d:"+370"},
+      {f:"🇱🇺",n:"Luxembourg",d:"+352"},
+      {f:"🇲🇬",n:"Madagascar",d:"+261"},
+      {f:"🇲🇼",n:"Malawi",d:"+265"},
+      {f:"🇲🇾",n:"Malaysia",d:"+60"},
+      {f:"🇲🇻",n:"Maldives",d:"+960"},
+      {f:"🇲🇱",n:"Mali",d:"+223"},
+      {f:"🇲🇹",n:"Malta",d:"+356"},
+      {f:"🇲🇭",n:"Marshall Islands",d:"+692"},
+      {f:"🇲🇷",n:"Mauritania",d:"+222"},
+      {f:"🇲🇺",n:"Mauritius",d:"+230"},
+      {f:"🇲🇽",n:"Mexico",d:"+52"},
+      {f:"🇫🇲",n:"Micronesia",d:"+691"},
+      {f:"🇲🇩",n:"Moldova",d:"+373"},
+      {f:"🇲🇨",n:"Monaco",d:"+377"},
+      {f:"🇲🇳",n:"Mongolia",d:"+976"},
+      {f:"🇲🇪",n:"Montenegro",d:"+382"},
+      {f:"🇲🇦",n:"Morocco",d:"+212"},
+      {f:"🇲🇿",n:"Mozambique",d:"+258"},
+      {f:"🇲🇲",n:"Myanmar",d:"+95"},
+      {f:"🇳🇦",n:"Namibia",d:"+264"},
+      {f:"🇳🇷",n:"Nauru",d:"+674"},
+      {f:"🇳🇵",n:"Nepal",d:"+977"},
+      {f:"🇳🇱",n:"Netherlands",d:"+31"},
+      {f:"🇳🇿",n:"New Zealand",d:"+64"},
+      {f:"🇳🇮",n:"Nicaragua",d:"+505"},
+      {f:"🇳🇪",n:"Niger",d:"+227"},
+      {f:"🇳🇬",n:"Nigeria",d:"+234"},
+      {f:"🇲🇰",n:"North Macedonia",d:"+389"},
+      {f:"🇳🇴",n:"Norway",d:"+47"},
+      {f:"🇴🇲",n:"Oman",d:"+968"},
+      {f:"🇵🇰",n:"Pakistan",d:"+92"},
+      {f:"🇵🇼",n:"Palau",d:"+680"},
+      {f:"🇵🇦",n:"Panama",d:"+507"},
+      {f:"🇵🇬",n:"Papua New Guinea",d:"+675"},
+      {f:"🇵🇾",n:"Paraguay",d:"+595"},
+      {f:"🇵🇪",n:"Peru",d:"+51"},
+      {f:"🇵🇭",n:"Philippines",d:"+63"},
+      {f:"🇵🇱",n:"Poland",d:"+48"},
+      {f:"🇵🇹",n:"Portugal",d:"+351"},
+      {f:"🇶🇦",n:"Qatar",d:"+974"},
+      {f:"🇷🇴",n:"Romania",d:"+40"},
+      {f:"🇷🇺",n:"Russia",d:"+7"},
+      {f:"🇷🇼",n:"Rwanda",d:"+250"},
+      {f:"🇰🇳",n:"Saint Kitts & Nevis",d:"+1869"},
+      {f:"🇱🇨",n:"Saint Lucia",d:"+1758"},
+      {f:"🇻🇨",n:"Saint Vincent",d:"+1784"},
+      {f:"🇼🇸",n:"Samoa",d:"+685"},
+      {f:"🇸🇲",n:"San Marino",d:"+378"},
+      {f:"🇸🇹",n:"São Tomé & Príncipe",d:"+239"},
+      {f:"🇸🇦",n:"Saudi Arabia",d:"+966"},
+      {f:"🇸🇳",n:"Senegal",d:"+221"},
+      {f:"🇷🇸",n:"Serbia",d:"+381"},
+      {f:"🇸🇨",n:"Seychelles",d:"+248"},
+      {f:"🇸🇱",n:"Sierra Leone",d:"+232"},
+      {f:"🇸🇬",n:"Singapore",d:"+65"},
+      {f:"🇸🇰",n:"Slovakia",d:"+421"},
+      {f:"🇸🇮",n:"Slovenia",d:"+386"},
+      {f:"🇸🇧",n:"Solomon Islands",d:"+677"},
+      {f:"🇸🇴",n:"Somalia",d:"+252"},
+      {f:"🇿🇦",n:"South Africa",d:"+27"},
+      {f:"🇸🇸",n:"South Sudan",d:"+211"},
+      {f:"🇪🇸",n:"Spain",d:"+34"},
+      {f:"🇱🇰",n:"Sri Lanka",d:"+94"},
+      {f:"🇸🇩",n:"Sudan",d:"+249"},
+      {f:"🇸🇷",n:"Suriname",d:"+597"},
+      {f:"🇸🇪",n:"Sweden",d:"+46"},
+      {f:"🇨🇭",n:"Switzerland",d:"+41"},
+      {f:"🇸🇾",n:"Syria",d:"+963"},
+      {f:"🇹🇼",n:"Taiwan",d:"+886"},
+      {f:"🇹🇯",n:"Tajikistan",d:"+992"},
+      {f:"🇹🇿",n:"Tanzania",d:"+255"},
+      {f:"🇹🇭",n:"Thailand",d:"+66"},
+      {f:"🇹🇱",n:"Timor-Leste",d:"+670"},
+      {f:"🇹🇬",n:"Togo",d:"+228"},
+      {f:"🇹🇴",n:"Tonga",d:"+676"},
+      {f:"🇹🇹",n:"Trinidad & Tobago",d:"+1868"},
+      {f:"🇹🇳",n:"Tunisia",d:"+216"},
+      {f:"🇹🇷",n:"Turkey",d:"+90"},
+      {f:"🇹🇲",n:"Turkmenistan",d:"+993"},
+      {f:"🇹🇻",n:"Tuvalu",d:"+688"},
+      {f:"🇺🇬",n:"Uganda",d:"+256"},
+      {f:"🇺🇦",n:"Ukraine",d:"+380"},
+      {f:"🇦🇪",n:"UAE",d:"+971"},
+      {f:"🇬🇧",n:"United Kingdom",d:"+44"},
+      {f:"🇺🇸",n:"USA",d:"+1"},
+      {f:"🇺🇾",n:"Uruguay",d:"+598"},
+      {f:"🇺🇿",n:"Uzbekistan",d:"+998"},
+      {f:"🇻🇺",n:"Vanuatu",d:"+678"},
+      {f:"🇻🇦",n:"Vatican City",d:"+39"},
+      {f:"🇻🇪",n:"Venezuela",d:"+58"},
+      {f:"🇻🇳",n:"Vietnam",d:"+84"},
+      {f:"🇾🇪",n:"Yemen",d:"+967"},
+      {f:"🇿🇲",n:"Zambia",d:"+260"},
+      {f:"🇿🇼",n:"Zimbabwe",d:"+263"}
+    ];
+
+    function renderCCList(list){
+      const el=document.getElementById('cc-list');
+      if(!el)return;
+      el.innerHTML=list.map(c=>`
+        <div class="cc-item" onclick="selectCC('${c.f}','${c.d}')">
+          <span class="ci-flag">${c.f}</span>
+          <span class="ci-name">${c.n}</span>
+          <span class="ci-dial">${c.d}</span>
+        </div>`).join('');
+    }
+
+    let _ccSearchTimer=null;
+    function filterCC(q){
+      clearTimeout(_ccSearchTimer);
+      _ccSearchTimer=setTimeout(()=>{
+        const s=q.toLowerCase();
+        renderCCList(ALL_COUNTRIES.filter(c=>c.n.toLowerCase().includes(s)||c.d.includes(s)));
+      },120);
+    }
+
+    function selectCC(flag,dial){
+      document.getElementById('cc-flag').textContent=flag;
+      document.getElementById('cc-code').textContent=dial;
+      document.getElementById('su-cc').value=dial;
+      closeCCDropdown();
+    }
+
+    function toggleCCDropdown(){
+      const p=document.getElementById('cc-panel');
+      const open=p.style.display==='block';
+      if(open){closeCCDropdown();}
+      else{
+        p.style.display='block';
+        document.getElementById('cc-selected').style.borderColor='var(--gold-500)';
+        renderCCList(ALL_COUNTRIES);
+        setTimeout(()=>document.getElementById('cc-search').focus(),80);
+      }
+    }
+
+    function closeCCDropdown(){
+      const p=document.getElementById('cc-panel');
+      if(p)p.style.display='none';
+      const s=document.getElementById('cc-selected');
+      if(s)s.style.borderColor='var(--border)';
+      const sr=document.getElementById('cc-search');
+      if(sr)sr.value='';
+    }
+
+    // Close on outside click
+    document.addEventListener('click',function(e){
+      const wrap=document.getElementById('cc-dropdown-wrap');
+      if(wrap&&!wrap.contains(e.target))closeCCDropdown();
+    });
+    </script>
+
+    <div class="lfield">
+      <label>EMAIL ID</label>
+      <div class="linput-wrap">
+        <span class="linput-icon">📧</span>
+        <input type="email" id="su-email" placeholder="example@gmail.com" autocomplete="email" oninput="clearSignupMsg()">
+      </div>
+    </div>
+
+    <div class="lfield">
+      <label>LOGIN ID</label>
+      <div class="linput-wrap">
+        <span class="linput-icon">👤</span>
+        <input type="text" id="su-id" placeholder="Choose your Login ID" autocomplete="username" oninput="clearSignupMsg()">
+      </div>
+    </div>
+
+    <div class="lfield">
+      <label>PASSWORD</label>
+      <div class="linput-wrap">
+        <span class="linput-icon">🔒</span>
+        <input type="password" id="su-pwd" placeholder="Min 4 characters" autocomplete="new-password" oninput="clearSignupMsg()">
+        <span class="linput-eye" onclick="togglePwd('su-pwd',this)">👁️</span>
+      </div>
+    </div>
+
+    <div class="lfield">
+      <label>CONFIRM PASSWORD</label>
+      <div class="linput-wrap">
+        <span class="linput-icon">🔑</span>
+        <input type="password" id="su-pwd2" placeholder="Re-enter password" autocomplete="new-password" oninput="clearSignupMsg()">
+        <span class="linput-eye" onclick="togglePwd('su-pwd2',this)">👁️</span>
+      </div>
+    </div>
+
+    <div class="signup-err" id="signup-err"></div>
+    <div class="signup-success" id="signup-ok">🎉 Account created! Logging you in…</div>
+
+    <button class="btn-signup-submit" onclick="doSignup()">✅ CREATE ACCOUNT</button>
+
+    <div class="auth-switch">
+      Already have an account?
+      <span onclick="switchTab('login')">Login →</span>
+    </div>
+  </div>
+
+
+
+</div>
+
+<!-- ════════ HEADER — fixed outside app so it never scrolls ════════ -->
+<header id="main-header" style="display:none">
+  <div class="header-inner">
+    <div style="display:flex;align-items:center;gap:10px">
+      <div class="logo-wrap">📡</div>
+      <div>
+        <div class="company-name">
+          <span id="header-biz-name">DTH ACCOUNTS</span>
+          <span id="header-biz-sub">DTH ACCOUNTS TRACKER</span>
+          <span style="font-family:var(--tamil)" id="header-biz-ta">DTH கணக்கு டிராக்கர்</span>
+        </div>
+      </div>
+    </div>
+    <div class="hd-right">
+      <div class="rate-pill" onclick="openCommModal()" style="background:rgba(0,255,179,0.1);border-color:rgba(0,255,179,0.25);color:var(--green)">🏆 Comm.</div>
+      <div class="rate-pill" onclick="openConvertModal()" style="background:rgba(181,111,255,0.1);border-color:rgba(181,111,255,0.25);color:var(--purple)">💰</div>
+      <div class="rate-pill" onclick="openRateModal()">💱 ₹1=<span id="rate-display">?</span>ரு</div>
+      <div class="logout-btn" onclick="doLogout()">⏻ Out</div>
+    </div>
+  </div>
+  <div class="header-strip">
+    <div class="strip-item">📥 Buy: <span class="sv" id="strip-buy">-</span></div>
+    <div class="strip-item">📤 Sell: <span class="sv" id="strip-sell">-</span></div>
+    <div class="strip-item">💰 Margin/₹1: <span class="sv" id="strip-margin">-</span></div>
+    <div class="strip-item">👤 <span class="sv" id="strip-user">admin</span></div>
+  </div>
+</header>
+
+<div class="toast" id="toast"></div>
+
+<!-- ════════ MAIN APP ════════ -->
+<div id="app">
+
+<div id="page-scroll-area">
+<!-- ════════ HOME PAGE ════════ -->
+<div class="page active" id="page-home">
+  <div class="summary">
+    <div class="sum-card blue">
+      <div class="label">Total Income <span class="ta-label">மொத்த வருமானம்</span></div>
+      <div class="amount" id="sum-income">ரு0</div>
+      <div class="sub" id="sum-income-inr">≈₹0</div>
+    </div>
+    <div class="sum-card orange">
+      <div class="label">Wallet Used <span class="ta-label">செலவு</span></div>
+      <div class="amount" id="sum-cost">₹0</div>
+    </div>
+    <div class="sum-card">
+      <div class="label">Profit (LKR) <span class="ta-label">லாபம்</span></div>
+      <div class="amount" id="sum-profit">ரு0</div>
+    </div>
+  </div>
+
+  <div class="cashpend-bar" id="cashpend-bar">
+    <div class="cl">🕐 Cash Pending <span>பணம் நிலுவை — லாபத்தில் சேரவில்லை</span></div>
+    <span class="cv" id="sum-cashpend">—</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">💳 INR Wallets <span class="ta">— ஐ.என்.ஆர் பணப்பை</span></div>
+    <div class="wallets" id="wallet-display"></div>
+  </div>
+
+  <div class="section"><div class="section-title">➕ New Recharge <span class="ta">— புதிய ரீசார்ஜ்</span></div></div>
+  <div class="form-card">
+    <div class="exchange-box">
+      <div class="ex-title">💱 Exchange Rate (Today) <span class="ta">இன்றைய மாற்று விகிதம்</span></div>
+      <div class="exchange-row">
+        <div class="ex-item">
+          <div class="ei-label">Buy Rate (INR→LKR) <span class="ta">வாங்கல் விலை</span></div>
+          <div class="ei-val ei-buy">ரு<span id="buy-rate-val">0.00</span></div>
+        </div>
+        <div class="ex-item">
+          <div class="ei-label">Sell Rate (INR→LKR) <span class="ta">விற்பனை விலை</span></div>
+          <div class="ei-val ei-sell">ரு<span id="sell-rate-val">0.00</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="field">
+        <label>Customer Name <span class="ta">வாடிக்கையாளர் பெயர்</span></label>
+        <input type="text" id="f-cust" placeholder="e.g. குமரன்">
+      </div>
+      <div class="field">
+        <label>Mobile <span class="ta">மொபைல்</span></label>
+        <input type="tel" id="f-mobile" placeholder="07xxxxxxxx">
+      </div>
+    </div>
+    <div class="field">
+      <label>Customer ID / DTH Number <span class="ta">வாடிக்கையாளர் ஐடி / DTH எண்</span></label>
+      <input type="text" id="f-dth" placeholder="e.g. 1234567890" style="font-family:var(--mono)">
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>Operator <span class="ta">ஆபரேட்டர்</span></label>
+        <select id="f-operator">
+          <option>Airtel DTH</option><option>Tata Play</option><option>Sun Direct</option>
+          <option>Dish TV</option><option>DD Free Dish</option><option>Other / மற்றவை</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>INR Wallet <span class="ta">பணப்பை</span></label>
+        <select id="f-wallet" onchange="calcProfit()"></select>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>🇮🇳 Cost (INR ₹) <span class="ta">செலவு INR</span></label>
+        <input type="number" id="f-cost" placeholder="e.g. 150" oninput="calcProfit()">
+      </div>
+      <div class="field">
+        <label>🇱🇰 Charge Customer (LKR) <span class="ta">வசூல் LKR</span></label>
+        <input type="number" id="f-income-lkr" placeholder="e.g. 5000" oninput="calcProfit()">
+      </div>
+    </div>
+
+    <div class="calc-box" id="calc-box">
+      <div class="calc-row">
+        <span class="clabel">INR Cost <span class="ta">ஐ.என்.ஆர் செலவு</span></span>
+        <span class="cval" id="c-inr">₹0</span>
+      </div>
+      <div class="calc-row" id="c-wallet-comm-row" style="display:none">
+        <span class="clabel" style="color:var(--green)">💰 Wallet Commission Back <span class="ta">வாலட் கமிஷன்</span></span>
+        <span class="cval" id="c-wallet-comm" style="color:var(--green)">+₹0</span>
+      </div>
+      <div class="calc-row" id="c-actual-deduct-row" style="display:none">
+        <span class="clabel" style="color:var(--accent)">Actual Wallet Deduction <span class="ta">வாலட் கழிவு</span></span>
+        <span class="cval" id="c-actual-deduct" style="color:var(--accent)">₹0</span>
+      </div>
+      <div class="calc-row">
+        <span class="clabel">= LKR Equivalent (Buy Rate) <span class="ta">வாங்கல் விகிதம்</span></span>
+        <span class="cval" id="c-cost-lkr">ரு0</span>
+      </div>
+      <div class="calc-row">
+        <span class="clabel">Selling Rate Value <span class="ta">விற்பனை மதிப்பு</span></span>
+        <span class="cval" id="c-sell-val">ரு0</span>
+      </div>
+      <div class="calc-row">
+        <span class="clabel">Customer Paid <span class="ta">வாடிக்கையாளர் கட்டணம்</span></span>
+        <span class="cval" id="c-income-lkr">ரு0</span>
+      </div>
+      <div class="calc-row profit-row">
+        <span class="clabel">🎉 Your Profit <span class="ta">உங்கள் லாபம்</span></span>
+        <span class="profit-big" id="profit-preview">ரு0</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Payment Type <span class="ta">பணம் செலுத்தும் வகை</span></label>
+      <div class="segment" id="payment-seg">
+        <button class="active" onclick="selectPayment('Cash',this)">💵 Cash</button>
+        <button onclick="selectPayment('CashPending',this)">🕐 Later</button>
+        <button onclick="selectPayment('Credit',this)">📋 Credit</button>
+      </div>
+    </div>
+    <div id="cashpend-note" class="cashpend-note">
+      🕐 Cash Pending: Recharge done but cash NOT received yet.<br>
+      <span style="font-family:var(--tamil);font-size:9px;color:var(--textD)">பணம் நிலுவை: வசூலானதும் லாபம் சேரும்.</span>
+    </div>
+    <div id="credit-note" class="credit-note-box">
+      ⚠️ Credit: Customer owes you. Saved in Credit Ledger.<br>
+      <span style="font-family:var(--tamil);font-size:9px;color:var(--textD)">கடன்: வாடிக்கையாளர் கடன் பதிவேட்டில் சேர்க்கப்படும்</span>
+    </div>
+    <button class="btn btn-primary" onclick="addRecharge()">✅ Save Recharge / ரீசார்ஜ் சேமி</button>
+  </div>
+</div>
+
+<!-- ════════ HISTORY PAGE ════════ -->
+<div class="page" id="page-history">
+  <div class="section" style="margin-top:12px">
+    <div class="section-title">📋 Recharge History <span class="ta">— வரலாறு</span></div>
+    <div id="history-list"><div class="empty">No recharges yet<span class="ta">இன்னும் ரீசார்ஜ் இல்லை</span></div></div>
+  </div>
+</div>
+
+<!-- ════════ CREDIT PAGE ════════ -->
+<div class="page" id="page-credit">
+  <div class="section" style="margin-top:12px">
+    <div class="section-title">📋 Credit Ledger <span class="ta">— கடன் பதிவேடு</span></div>
+    <div style="background:rgba(245,166,35,0.08);border:1px solid rgba(245,166,35,0.2);border-radius:12px;padding:12px 14px;margin-bottom:9px;display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <div style="font-size:10px;color:var(--accent);font-weight:800">Total Pending Credit</div>
+        <div style="font-family:var(--tamil);font-size:9px;color:var(--textD)">மொத்த நிலுவைக் கடன்</div>
+      </div>
+      <span style="font-size:18px;font-weight:800;color:var(--accent);font-family:var(--mono)" id="total-credit-due">ரு0</span>
+    </div>
+    <div id="credit-list"><div class="empty">No credit entries<span class="ta">கடன் பதிவுகள் இல்லை 🎉</span></div></div>
+  </div>
+  <div class="form-card">
+    <h3>💰 Collect Cash <span class="ta">பணம் வசூலி</span></h3>
+    <div class="row2">
+      <div class="field">
+        <label>Customer Name <span class="ta">பெயர்</span></label>
+        <input type="text" id="cc-name" placeholder="Name">
+      </div>
+      <div class="field">
+        <label>Amount Received (LKR) <span class="ta">பெற்ற தொகை</span></label>
+        <input type="number" id="cc-amount" placeholder="ரு">
+      </div>
+    </div>
+    <button class="btn btn-green" onclick="collectCash()">✅ Mark Cash Collected / பணம் வசூலானது</button>
+  </div>
+</div>
+
+<!-- ════════ CASH PENDING PAGE ════════ -->
+<div class="page" id="page-cashpend">
+  <div class="section" style="margin-top:12px">
+    <div class="section-title">💵 Cash Pending <span class="ta">— பணம் நிலுவை</span></div>
+    <div style="background:var(--pinkD);border:1px solid rgba(236,64,122,0.3);border-radius:12px;padding:12px 14px;margin-bottom:9px;display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <div style="font-size:10px;color:var(--pink);font-weight:800">Total Cash Not Received</div>
+        <div style="font-family:var(--tamil);font-size:9px;color:var(--textD)">மொத்த பணம் கிடைக்காதது</div>
+      </div>
+      <span style="font-size:18px;font-weight:800;color:var(--pink);font-family:var(--mono)" id="total-cashpend-due">ரு0</span>
+    </div>
+    <div style="background:rgba(245,166,35,0.06);border:1px solid rgba(245,166,35,0.2);border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:10px;color:var(--accent);font-weight:700">
+      ℹ️ Recharges done — cash NOT yet received. Profit counted when collected.<br>
+      <span style="font-family:var(--tamil);font-size:9px;color:var(--textD)">வசூலானதும் லாபத்தில் சேரும்.</span>
+    </div>
+    <div id="cashpend-list"><div class="empty">பணம் நிலுவை இல்லை 🎉<span class="ta">No pending cash</span></div></div>
+  </div>
+  <div class="form-card">
+    <h3>💵 Collect Cash <span class="ta">பணம் வசூல்</span></h3>
+    <div class="row2">
+      <div class="field">
+        <label>Customer Name <span class="ta">பெயர்</span></label>
+        <input type="text" id="cp-name" placeholder="Name">
+      </div>
+      <div class="field">
+        <label>Amount Received (LKR) <span class="ta">பெற்ற தொகை</span></label>
+        <input type="number" id="cp-amount" placeholder="ரு">
+      </div>
+    </div>
+    <button class="btn btn-green" onclick="collectCashPending()">✅ Mark Cash Received / பணம் கிடைத்தது</button>
+  </div>
+</div>
+
+<!-- ════════ WALLET PAGE ════════ -->
+<div class="page" id="page-wallet">
+  <div class="section" style="margin-top:12px">
+    <div class="section-title">💳 Wallet Management <span class="ta">— பணப்பை மேலாண்மை</span></div>
+  </div>
+  <div class="form-card">
+    <h3>💱 Set Exchange Rates <span class="ta">மாற்று விகிதம் அமை</span></h3>
+    <div class="row2">
+      <div class="field">
+        <label>Buy Rate (ரு per ₹1) <span class="ta">வாங்கல் விலை</span></label>
+        <input type="number" id="buy-rate-input" placeholder="e.g. 3.20" step="0.01" oninput="updateRatePreview()">
+      </div>
+      <div class="field">
+        <label>Sell Rate (ரு per ₹1) <span class="ta">விற்பனை விலை</span></label>
+        <input type="number" id="sell-rate-input" placeholder="e.g. 3.40" step="0.01" oninput="updateRatePreview()">
+      </div>
+    </div>
+    <div id="rate-preview-box" style="display:none;background:rgba(0,230,118,0.06);border:1px solid rgba(0,230,118,0.2);border-radius:10px;padding:10px 12px;margin-bottom:9px;font-size:11px">
+      <span style="color:var(--textD)">Margin per ₹1 INR = </span>
+      <span id="rate-margin-preview" style="font-weight:800;color:var(--green);font-family:var(--mono)">ரு0</span>
+    </div>
+    <button class="btn btn-gold" onclick="saveRates()">💾 Save Rates / விகிதம் சேமி</button>
+  </div>
+
+  <!-- PROFIT REINVEST -->
+  <div class="form-card">
+    <h3>🔄 Reinvest Profit to Wallet <span class="ta">லாபத்தை பணப்பையில் சேர்</span></h3>
+    <div class="reinvest-box">
+      <div class="rb-title">💰 Profit Summary <span class="ta">லாப நிலை</span></div>
+
+      <!-- 3 stat boxes -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:12px">
+        <div style="background:rgba(0,0,0,0.2);border:1px solid var(--border);border-radius:12px;padding:10px;text-align:center">
+          <div style="font-size:7px;color:var(--textD);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Total Profit<br><span style="font-family:var(--tamil);text-transform:none">மொத்த லாபம்</span></div>
+          <div style="font-size:14px;font-weight:900;color:var(--green);font-family:var(--mono)" id="reinvest-profit-lkr">ரு0</div>
+        </div>
+        <div style="background:rgba(255,71,87,0.06);border:1px solid rgba(255,71,87,0.15);border-radius:12px;padding:10px;text-align:center">
+          <div style="font-size:7px;color:var(--textD);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Reinvested<br><span style="font-family:var(--tamil);text-transform:none">முதலீடு செய்தது</span></div>
+          <div style="font-size:14px;font-weight:900;color:var(--red);font-family:var(--mono)" id="ri-used-lkr">ரு0</div>
+        </div>
+        <div style="background:rgba(0,245,160,0.07);border:1px solid rgba(0,245,160,0.2);border-radius:12px;padding:10px;text-align:center">
+          <div style="font-size:7px;color:var(--textD);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Available<br><span style="font-family:var(--tamil);text-transform:none">கிடைக்கும்</span></div>
+          <div style="font-size:14px;font-weight:900;color:var(--green);font-family:var(--mono)" id="ri-available-lkr">ரு0</div>
+        </div>
+      </div>
+
+      <!-- INR EQUIVALENT BANNER -->
+      <div id="ri-inr-equiv-bar" style="display:none;background:linear-gradient(135deg,rgba(168,85,247,0.1),rgba(77,159,255,0.07));border:1px solid rgba(168,85,247,0.25);border-radius:12px;padding:11px 14px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center">
+        <div style="font-size:9px;color:var(--purple);font-weight:700">Available Profit in INR<br><span style="font-family:var(--tamil);font-size:8px;color:var(--textD);font-weight:500">கிடைக்கும் லாபம் INR மதிப்பு</span></div>
+        <div style="font-size:22px;font-weight:900;color:var(--purple);font-family:var(--mono)" id="ri-profit-inr-val">₹0</div>
+      </div>
+
+      <div class="row2" style="margin-bottom:10px">
+        <div class="field" style="margin:0">
+          <label>LKR Amount to Reinvest <span class="ta">முதலீடு தொகை (LKR)</span></label>
+          <input type="number" id="ri-lkr-amount" placeholder="ரு" step="0.01" oninput="calcReinvest()">
+        </div>
+        <div class="field" style="margin:0">
+          <label>Target Wallet <span class="ta">பணப்பை</span></label>
+          <select id="ri-wallet"></select>
+        </div>
+      </div>
+
+      <div class="field" style="margin-bottom:10px">
+        <label>Conversion Rate (ரு per ₹1) <span class="ta">மாற்று விகிதம்</span></label>
+        <div style="display:flex;gap:6px">
+          <input type="number" id="ri-rate" placeholder="e.g. 3.20" step="0.01" oninput="calcReinvest()" style="flex:1">
+          <button onclick="document.getElementById('ri-rate').value=buyRate||'';calcReinvest();" style="background:rgba(240,165,0,0.1);border:1px solid rgba(240,165,0,0.25);color:var(--accent);border-radius:10px;padding:0 10px;font-size:9px;font-weight:800;cursor:pointer;font-family:var(--sans);white-space:nowrap">Buy<br>Rate</button>
+          <button onclick="document.getElementById('ri-rate').value=sellRate||'';calcReinvest();" style="background:rgba(0,245,160,0.08);border:1px solid rgba(0,245,160,0.2);color:var(--green);border-radius:10px;padding:0 10px;font-size:9px;font-weight:800;cursor:pointer;font-family:var(--sans);white-space:nowrap">Sell<br>Rate</button>
+        </div>
+      </div>
+
+      <!-- LIVE PREVIEW -->
+      <div id="ri-preview" style="display:none;background:linear-gradient(135deg,rgba(0,245,160,0.07),rgba(77,159,255,0.04));border:1px solid rgba(0,245,160,0.2);border-radius:12px;padding:13px;margin-bottom:10px">
+        <div style="font-size:9px;color:var(--textD);margin-bottom:8px;font-weight:600">Conversion Preview / மாற்று முன்னோட்டம்</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:4px">
+          <div style="text-align:center">
+            <div style="font-size:8px;color:var(--textD)">LKR Profit</div>
+            <div style="font-size:16px;font-weight:900;color:var(--green);font-family:var(--mono)">ரு<span id="ri-lkr-show">0</span></div>
+          </div>
+          <div style="color:var(--textD);font-size:18px;font-weight:300">÷</div>
+          <div style="text-align:center">
+            <div style="font-size:8px;color:var(--textD)">Rate</div>
+            <div style="font-size:16px;font-weight:900;color:var(--accent);font-family:var(--mono)">ரு<span id="ri-rate-show">0</span></div>
+          </div>
+          <div style="color:var(--textD);font-size:18px;font-weight:300">=</div>
+          <div style="text-align:center">
+            <div style="font-size:8px;color:var(--textD)">Added to Wallet</div>
+            <div style="font-size:22px;font-weight:900;color:var(--green);font-family:var(--mono)" id="ri-inr-show">₹0</div>
+          </div>
+        </div>
+        <div style="margin-top:8px;font-size:9px;color:var(--green);font-weight:700;text-align:center;background:rgba(0,245,160,0.05);border-radius:8px;padding:6px">
+          ✅ After reinvest — Available Profit will become <b style="font-family:var(--mono)">ரு0</b>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr auto;gap:8px">
+        <button class="btn btn-green" onclick="doReinvest()">🔄 Reinvest & Zero Profit / லாபத்தை சேர்</button>
+        <button onclick="if(confirm('Reset reinvested tracker to 0?')){reinvestedProfit=0;save(true);loadReinvestUI();showToast('🔄 Reset done','ok');}" style="background:rgba(255,71,87,0.08);border:1px solid rgba(255,71,87,0.2);color:var(--red);border-radius:12px;padding:0 12px;font-size:10px;font-weight:800;cursor:pointer;font-family:var(--sans)">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-card">
+    <h3>🆕 Add New Wallet <span class="ta">புதிய பணப்பை சேர்</span></h3>
+    <div class="row2">
+      <div class="field">
+        <label>Wallet Name <span class="ta">பெயர்</span></label>
+        <input type="text" id="new-wname" placeholder="e.g. TS DTH">
+      </div>
+      <div class="field">
+        <label>Opening Balance (₹) <span class="ta">தொடக்க இருப்பு</span></label>
+        <input type="number" id="new-wbal" placeholder="0">
+      </div>
+    </div>
+    <div class="field">
+      <label>💰 Wallet Commission Rate (%) <span class="ta">கமிஷன் விகிதம்</span></label>
+      <input type="number" id="new-wcomm" placeholder="e.g. 0.2 for 0.2% (optional)" step="0.001" min="0" max="10">
+      <div style="font-size:9px;color:var(--textD);margin-top:4px">
+        💡 If wallet gives you back commission on recharges (e.g. 0.2% → ₹500 recharge deducts ₹499 + ₹1 auto-commission recorded)<br>
+        <span style="font-family:var(--tamil)">ரீசார்ஜ் செய்யும்போது வாலட் தரும் கமிஷன் % இங்கே உள்ளிடவும்</span>
+      </div>
+    </div>
+    <button class="btn btn-orange" onclick="addWallet()">➕ Add Wallet / பணப்பை சேர்</button>
+  </div>
+  <div class="section"><div class="section-title">⚙️ Existing Wallets <span class="ta">— இருக்கும் பணப்பைகள்</span></div></div>
+  <div id="wallet-manage"></div>
+</div>
+
+<!-- ════════ REPORT PAGE ════════ -->
+<div class="page" id="page-report">
+  <div class="section" style="margin-top:12px">
+    <div class="section-title">📊 Report & Export <span class="ta">— அறிக்கை & ஏற்றுமதி</span></div>
+    <div id="report-content"></div>
+  </div>
+</div>
+
+<!-- ════════ SETTINGS PAGE ════════ -->
+<div class="page" id="page-settings">
+  <div class="section" style="margin-top:12px">
+    <div class="section-title">⚙️ Settings <span class="ta">— அமைப்புகள்</span></div>
+  </div>
+
+  <!-- BUSINESS NAME SETTINGS -->
+  <div class="form-card" style="background:linear-gradient(135deg,rgba(245,166,35,0.06),rgba(255,140,66,0.03));border-color:rgba(245,166,35,0.2)">
+    <h3 style="background:var(--gold);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">🏢 Business Name / வணிக பெயர்</h3>
+    <div class="field">
+      <label>Business / Shop Name <span class="ta">வணிகப் பெயர் / கடை பெயர்</span></label>
+      <input type="text" id="biz-name-input" placeholder="e.g. Sri Murugan DTH Shop" style="font-size:14px;font-weight:600">
+    </div>
+    <button class="btn btn-orange" onclick="saveBusinessName()">💾 Save Business Name / சேமி</button>
+  </div>
+
+  <!-- CHANGE PASSWORD -->
+  <div class="form-card">
+    <h3>🔐 Change Password / Login <span class="ta">கடவுச்சொல் மாற்று</span></h3>
+    <div class="pwd-form">
+      <h4>Change User ID & Password / பயனர் விவரங்கள் மாற்று</h4>
+      <div class="field">
+        <label>New User ID <span class="ta">புதிய பயனர் ஐடி</span></label>
+        <input type="text" id="new-uid" placeholder="New user ID">
+      </div>
+      <div class="field">
+        <label>Current Password (verify) <span class="ta">தற்போதைய கடவுச்சொல்</span></label>
+        <input type="password" id="cur-pwd-chk" placeholder="Current password">
+      </div>
+      <div class="field">
+        <label>New Password <span class="ta">புதிய கடவுச்சொல்</span></label>
+        <input type="password" id="new-pwd" placeholder="New password">
+      </div>
+      <div class="field">
+        <label>Confirm New Password <span class="ta">உறுதிப்படுத்தவும்</span></label>
+        <input type="password" id="conf-pwd" placeholder="Re-enter new password">
+      </div>
+      <button class="btn btn-purple" onclick="changeCredentials()">🔐 Update Login / புதுப்பிக்க</button>
+    </div>
+  </div>
+
+  <!-- ACCOUNT INFO -->
+  <div class="form-card">
+    <h3>👤 Account Info <span class="ta">கணக்கு விவரங்கள்</span></h3>
+    <div class="info-row"><span class="ik">Logged in as</span><span class="iv" id="acc-userid" style="color:var(--accent)">admin</span></div>
+    <div class="info-row"><span class="ik">App Version</span><span class="iv" style="color:var(--blue)">v3.0 Pro</span></div>
+    <div class="info-row"><span class="ik">Last Login</span><span class="iv" id="acc-lastlogin" style="color:var(--textD)">-</span></div>
+  </div>
+
+  <!-- BACKUP & RESTORE -->
+  <div class="form-card" style="background:linear-gradient(135deg,rgba(77,159,255,0.06),rgba(168,85,247,0.04));border-color:rgba(77,159,255,0.25)">
+    <h3 style="background:linear-gradient(135deg,#4d9fff,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">
+      💾 Backup & Restore
+      <span class="ta" style="-webkit-text-fill-color:var(--textD)">தரவு பாதுகாப்பு</span>
+    </h3>
+
+    <!-- BACKUP -->
+    <div style="background:rgba(77,159,255,0.07);border:1px solid rgba(77,159,255,0.2);border-radius:14px;padding:14px;margin-bottom:12px">
+      <div style="font-size:10px;font-weight:800;color:var(--blue);letter-spacing:0.5px;margin-bottom:6px">📤 EXPORT BACKUP</div>
+      <div style="font-size:9px;color:var(--textD);margin-bottom:10px;line-height:1.5">
+        Download a complete backup of all your data (wallets, records, rates, commission, settings).<br>
+        <span style="font-family:var(--tamil)">அனைத்து தரவையும் JSON கோப்பாக பதிவிறக்கம் செய்யவும்.</span>
+      </div>
+      <button class="btn btn-blue" onclick="exportBackup()" style="background:linear-gradient(135deg,#1d4ed8,#4d9fff);color:#fff;box-shadow:0 5px 20px rgba(77,159,255,0.35)">
+        📥 Download Full Backup (.json) / முழு காப்புப்பிரதி
+      </button>
+    </div>
+
+    <!-- RESTORE -->
+    <div style="background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.2);border-radius:14px;padding:14px">
+      <div style="font-size:10px;font-weight:800;color:var(--purple);letter-spacing:0.5px;margin-bottom:6px">📥 RESTORE FROM BACKUP</div>
+      <div style="font-size:9px;color:var(--textD);margin-bottom:10px;line-height:1.5">
+        Select a previously downloaded .json backup file to restore all data.<br>
+        <span style="font-family:var(--tamil)">⚠️ இது தற்போதைய தரவை மாற்றும் — கவனமாக பயன்படுத்தவும்!</span>
+      </div>
+      <label style="display:block;background:linear-gradient(135deg,#6d28d9,#a855f7);border:none;border-radius:12px;padding:13px;font-family:var(--sans);font-size:13px;font-weight:800;color:#fff;cursor:pointer;text-align:center;box-shadow:0 5px 20px rgba(168,85,247,0.35);transition:filter 0.2s" onmouseover="this.style.filter='brightness(1.1)'" onmouseout="this.style.filter=''">
+        📂 Choose Backup File & Restore / கோப்பு தேர்வு
+        <input type="file" accept=".json" onchange="importBackup(event)" style="display:none">
+      </label>
+      <div id="restore-status" style="display:none;margin-top:10px;padding:10px 12px;border-radius:10px;font-size:11px;font-weight:700;text-align:center"></div>
+    </div>
+  </div>
+
+    <!-- DANGER ZONE -->
+  <div class="form-card">
+    <h3 style="color:var(--red)">⚠️ Danger Zone / ஆபத்தான மண்டலம்</h3>
+    <button class="btn btn-red" onclick="clearHistory()" style="margin-bottom:8px">🗑️ Clear History / வரலாற்றை அழி</button>
+    <button class="btn btn-red" onclick="clearAll()">💥 Clear ALL Data / அனைத்தையும் அழி</button>
+  </div>
+</div>
+
+<!-- ════════ COMMISSION PAGE ════════ -->
+<div class="page" id="page-commission">
+  <div class="section" style="margin-top:12px">
+    <div class="section-title">🏆 Commission History <span class="ta">— கமிஷன் வரலாறு</span></div>
+  </div>
+
+  <!-- TOTAL COMMISSION SUMMARY -->
+  <div class="comm-summary-bar" style="margin:0 12px 10px">
+    <div class="csl">Total Commission Earned <span>மொத்த கமிஷன்</span></div>
+    <span class="csv" id="total-commission">₹0.00</span>
+  </div>
+
+  <div style="margin:0 12px 10px;background:rgba(0,230,118,0.07);border:1px solid rgba(0,230,118,0.2);border-radius:12px;padding:11px 14px;font-size:10px;color:var(--green);font-weight:700">
+    🏆 Tap the <b>Comm.</b> button in the header to record a new commission payment.<br>
+    <span style="font-family:var(--tamil);color:var(--textD);font-size:9px;font-weight:600">மேலே உள்ள Comm. பட்டனை அழுத்தி கமிஷன் சேர்க்கவும்</span>
+  </div>
+
+  <!-- COMMISSION LIST BY WALLET -->
+  <div id="commission-list" style="padding:0 12px 10px">
+    <div class="empty">No commission recorded yet<span class="ta">கமிஷன் பதிவுகள் இல்லை</span></div>
+  </div>
+</div>
+
+</div><!-- /page-scroll-area -->
+
+</div><!-- /app -->
+
+<!-- ════════ NAV — fixed outside app so it never scrolls ════════ -->
+<nav id="main-nav" style="display:none">
+  <button class="active" onclick="showPage('home',this)">
+    <span class="icon">🏠</span>Home<br><span style="font-family:var(--tamil)">முகப்பு</span>
+  </button>
+  <button onclick="showPage('history',this)">
+    <span class="icon">📋</span>History<br><span style="font-family:var(--tamil)">வரலாறு</span>
+  </button>
+  <button onclick="showPage('credit',this)">
+    <span class="icon">💰</span>Credit<br><span style="font-family:var(--tamil)">கடன்</span>
+  </button>
+  <button onclick="showPage('cashpend',this)" id="nav-cashpend">
+    <span class="icon">💵</span>Pending<br><span style="font-family:var(--tamil)">நிலுவை</span>
+  </button>
+  <button onclick="showPage('wallet',this)">
+    <span class="icon">💳</span>Wallet<br><span style="font-family:var(--tamil)">பணப்பை</span>
+  </button>
+  <button onclick="showPage('report',this)">
+    <span class="icon">📊</span>Report<br><span style="font-family:var(--tamil)">அறிக்கை</span>
+  </button>
+  <button onclick="showPage('commission',this)">
+    <span class="icon">🏆</span>Comm.<br><span style="font-family:var(--tamil)">கமிஷன்</span>
+  </button>
+  <button onclick="showPage('settings',this)">
+    <span class="icon">⚙️</span>Settings<br><span style="font-family:var(--tamil)">அமைப்பு</span>
+  </button>
+</nav>
+
+<!-- ════════ MODALS ════════ -->
+
+<!-- RATE MODAL -->
+<div class="modal-overlay" id="modal-rate" onclick="closeRateModal(event)">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <h3>💱 Update Exchange Rate / மாற்று விகிதம் மாற்று</h3>
+    <div class="row2">
+      <div class="field">
+        <label>Buy Rate (ரு/₹1) <span class="ta">வாங்கல் விலை</span></label>
+        <input type="number" id="modal-buy-rate" placeholder="e.g. 3.20" step="0.01">
+      </div>
+      <div class="field">
+        <label>Sell Rate (ரு/₹1) <span class="ta">விற்பனை விலை</span></label>
+        <input type="number" id="modal-sell-rate" placeholder="e.g. 3.40" step="0.01">
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <button class="btn btn-gold" onclick="saveRateModal()">💾 Save / சேமி</button>
+      <button class="btn" style="background:var(--surface2);color:var(--text)" onclick="closeRateModalDirect()">❌ Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- PROFIT CONVERTER MODAL -->
+<div class="modal-overlay" id="modal-convert" onclick="closeConvertModal(event)">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <h3>💰 Profit LKR → INR Converter <span style="display:block;font-size:11px;color:var(--textD);font-weight:500;margin-top:3px;font-family:var(--tamil)">லாபம் LKR → INR மாற்றம்</span></h3>
+
+    <!-- AUTO PROFIT DISPLAY -->
+    <div style="background:linear-gradient(135deg,rgba(168,85,247,0.1),rgba(77,159,255,0.07));border:1px solid rgba(168,85,247,0.25);border-radius:14px;padding:14px;margin-bottom:14px">
+      <div style="font-size:9px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">📊 Current Profit Snapshot</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div style="background:rgba(0,0,0,0.2);border-radius:10px;padding:10px;text-align:center">
+          <div style="font-size:8px;color:var(--textD);font-weight:600;margin-bottom:4px">Total Profit (LKR)</div>
+          <div style="font-size:18px;font-weight:900;color:var(--green);font-family:var(--mono)" id="conv-total-lkr">ரு0</div>
+        </div>
+        <div style="background:rgba(0,0,0,0.2);border-radius:10px;padding:10px;text-align:center">
+          <div style="font-size:8px;color:var(--textD);font-weight:600;margin-bottom:4px">At Buy Rate (INR)</div>
+          <div style="font-size:18px;font-weight:900;color:var(--accent);font-family:var(--mono)" id="conv-auto-inr">₹0</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CUSTOM AMOUNT + RATE -->
+    <div style="background:var(--surface3);border:1px solid var(--border2);border-radius:14px;padding:14px;margin-bottom:12px">
+      <div style="font-size:9px;font-weight:700;color:var(--textM);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">🔧 Custom Conversion</div>
+      <div class="row2" style="margin-bottom:10px">
+        <div class="field" style="margin:0">
+          <label>LKR Amount (ரு) <span class="ta">தொகை</span></label>
+          <input type="number" id="conv-lkr-input" placeholder="ரு e.g. 5000" step="0.01" oninput="calcConvert()">
+        </div>
+        <div class="field" style="margin:0">
+          <label>Conversion Rate <span class="ta">விகிதம்</span></label>
+          <input type="number" id="conv-rate-input" placeholder="e.g. 3.20" step="0.01" oninput="calcConvert()">
+        </div>
+      </div>
+
+      <!-- LIVE RESULT -->
+      <div id="conv-result-box" style="display:none;background:linear-gradient(135deg,rgba(0,245,160,0.08),rgba(77,159,255,0.05));border:1px solid rgba(0,245,160,0.2);border-radius:12px;padding:14px;text-align:center">
+        <div style="font-size:9px;color:var(--textD);font-weight:600;margin-bottom:6px">ரு<span id="conv-lkr-show" style="color:var(--green);font-weight:800;font-family:var(--mono)">0</span> ÷ <span id="conv-rate-show" style="color:var(--accent);font-weight:800;font-family:var(--mono)">0</span> =</div>
+        <div style="font-size:32px;font-weight:900;color:var(--green);font-family:var(--mono)" id="conv-inr-result">₹0</div>
+        <div style="font-size:9px;color:var(--textD);margin-top:4px">Indian Rupees / இந்திய ரூபாய்</div>
+      </div>
+    </div>
+
+    <!-- QUICK RATE BUTTONS -->
+    <div style="margin-bottom:14px">
+      <div style="font-size:9px;font-weight:700;color:var(--textM);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">⚡ Quick Rate Select</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <button onclick="setConvRate(this)" data-rate="" class="conv-rate-btn" id="conv-btn-buy" style="flex:1;padding:8px 6px;border-radius:10px;border:1px solid rgba(0,245,160,0.3);background:rgba(0,245,160,0.08);color:var(--green);font-size:10px;font-weight:800;cursor:pointer;font-family:var(--sans)">Buy Rate<br><span id="conv-buy-label" style="font-family:var(--mono);font-size:11px">ரு-</span></button>
+        <button onclick="setConvRate(this)" data-rate="" class="conv-rate-btn" id="conv-btn-sell" style="flex:1;padding:8px 6px;border-radius:10px;border:1px solid rgba(240,165,0,0.3);background:rgba(240,165,0,0.08);color:var(--accent);font-size:10px;font-weight:800;cursor:pointer;font-family:var(--sans)">Sell Rate<br><span id="conv-sell-label" style="font-family:var(--mono);font-size:11px">ரு-</span></button>
+        <button onclick="setConvRate(this)" data-rate="" class="conv-rate-btn" id="conv-btn-avg" style="flex:1;padding:8px 6px;border-radius:10px;border:1px solid rgba(168,85,247,0.3);background:rgba(168,85,247,0.08);color:var(--purple);font-size:10px;font-weight:800;cursor:pointer;font-family:var(--sans)">Avg Rate<br><span id="conv-avg-label" style="font-family:var(--mono);font-size:11px">ரு-</span></button>
+      </div>
+    </div>
+
+    <!-- REINVEST LINK -->
+    <div style="background:rgba(0,245,160,0.06);border:1px solid rgba(0,245,160,0.15);border-radius:12px;padding:11px 13px;margin-bottom:12px;font-size:10px;color:var(--textD)">
+      💡 Want to <b style="color:var(--green)">reinvest</b> this profit back into a wallet?
+      Go to <b style="color:var(--accent)">Wallet → 🔄 Reinvest Profit</b> section.
+      <div style="font-family:var(--tamil);font-size:9px;margin-top:3px">லாபத்தை மீண்டும் முதலீடு செய்ய Wallet பக்கம் செல்லவும்.</div>
+    </div>
+
+    <button class="btn" style="background:var(--surface3);color:var(--textM);border:1px solid var(--border2)" onclick="closeConvertModalDirect()">✕ Close / மூடு</button>
+  </div>
+</div>
+
+<!-- COMMISSION MODAL -->
+<div class="modal-overlay" id="modal-commission" onclick="closeCommModal(event)">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <h3>🏆 Record Commission / கமிஷன் பதிவு</h3>
+    <div style="background:rgba(0,230,118,0.07);border:1px solid rgba(0,230,118,0.2);border-radius:12px;padding:10px 13px;margin-bottom:13px;font-size:10px;color:var(--green);font-weight:700">
+      💡 Select the wallet company that paid you commission
+      <div style="font-family:var(--tamil);color:var(--textD);font-size:9px;font-weight:600;margin-top:2px">கமிஷன் தந்த நிறுவனம் தேர்வு செய்யவும்</div>
+    </div>
+    <div class="field">
+      <label>Wallet / Company <span class="ta">பணப்பை / நிறுவனம்</span></label>
+      <select id="comm-modal-wallet" style="background:var(--surface2)"></select>
+    </div>
+    <div class="field">
+      <label>Commission Amount (₹ INR) <span class="ta">கமிஷன் தொகை</span></label>
+      <input type="number" id="comm-modal-amount" placeholder="e.g. 350" step="0.01">
+    </div>
+    <div class="field">
+      <label>Note / Period <span class="ta">குறிப்பு / காலம்</span></label>
+      <input type="text" id="comm-modal-note" placeholder="e.g. April 2025">
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <button class="btn btn-green" onclick="saveCommModal()">✅ Save / சேமி</button>
+      <button class="btn" style="background:var(--surface2);color:var(--text)" onclick="closeCommModalDirect()">❌ Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- WALLET TOPUP/REMOVE MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <h3 id="modal-title">Wallet Action</h3>
+    <div style="background:rgba(245,166,35,0.08);border:1px solid rgba(245,166,35,0.2);border-radius:12px;padding:12px;margin-bottom:12px;display:flex;justify-content:space-between">
+      <span style="font-size:11px;color:var(--textD);font-weight:700">Current Balance / தற்போதைய இருப்பு</span>
+      <span style="font-size:17px;font-weight:800;color:var(--accent);font-family:var(--mono)" id="modal-cur-bal">₹0</span>
+    </div>
+    <div class="field">
+      <label id="modal-label">Amount (₹ INR)</label>
+      <input type="number" id="modal-amount" placeholder="₹" oninput="calcTopupCost()">
+    </div>
+    <div id="modal-rate-row">
+      <div class="field">
+        <label>Buy Rate Paid (ரு/₹1) <span class="ta">வாங்கல் விகிதம்</span></label>
+        <input type="number" id="modal-buy-paid-rate" placeholder="Buy rate" step="0.01" oninput="calcTopupCost()">
+      </div>
+      <div id="topup-cost-box" style="display:none;background:rgba(0,230,118,0.06);border:1px solid rgba(0,230,118,0.2);border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:11px">
+        LKR Cost / LKR செலவு: <b id="topup-lkr-cost" style="color:var(--green);font-family:var(--mono)">ரு0</b><br>
+        Sell Value / விற்பனை மதிப்பு: <b id="topup-sell-val" style="color:var(--accent);font-family:var(--mono)">-</b>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <button class="btn btn-green" id="modal-confirm" onclick="confirmModal()">✅ Confirm</button>
+      <button class="btn" style="background:var(--surface2);color:var(--text)" onclick="closeModalDirect()">❌ Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- COLLECT CREDIT MODAL -->
+<div class="modal-overlay" id="modal-collect" onclick="closeCollectModal(event)">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <h3 id="collect-title">💰 Collect Credit</h3>
+    <div style="background:rgba(245,166,35,0.08);border:1px solid rgba(245,166,35,0.2);border-radius:12px;padding:12px;margin-bottom:12px;display:flex;justify-content:space-between">
+      <div style="font-size:10px;color:var(--textD);font-weight:700">Amount Owed / கடன் தொகை<br><small style="font-family:var(--tamil)">Partial payment OK</small></div>
+      <span style="font-size:17px;font-weight:800;color:var(--accent);font-family:var(--mono)" id="collect-owed">ரு0</span>
+    </div>
+    <div class="field">
+      <label>Amount Collecting (LKR) <span class="ta">வசூல் தொகை</span></label>
+      <input type="number" id="collect-amount" placeholder="ரு (partial ok)" style="background:var(--surface2)">
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <button class="btn btn-green" onclick="confirmCollect()">✅ Collected</button>
+      <button class="btn" style="background:var(--surface2);color:var(--text)" onclick="closeCollectModalDirect()">❌ Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- COLLECT CASH PENDING MODAL -->
+<div class="modal-overlay" id="modal-collect-cp" onclick="closeCollectCPModal(event)">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <h3 id="collect-cp-title">💵 Collect Cash Pending</h3>
+    <div style="background:var(--pinkD);border:1px solid rgba(236,64,122,0.3);border-radius:12px;padding:12px;margin-bottom:12px;display:flex;justify-content:space-between">
+      <div style="font-size:10px;color:var(--pink);font-weight:700">Pending Amount<br><small style="font-family:var(--tamil)">பாதி பணம் சரி</small></div>
+      <span style="font-size:17px;font-weight:800;color:var(--pink);font-family:var(--mono)" id="collect-cp-owed">ரு0</span>
+    </div>
+    <div class="field">
+      <label>Amount Collecting (LKR) <span class="ta">வசூல் தொகை</span></label>
+      <input type="number" id="collect-cp-amount" placeholder="ரு (partial ok)" style="background:var(--surface2)">
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <button class="btn btn-green" onclick="confirmCollectCP()">✅ Collected</button>
+      <button class="btn" style="background:var(--surface2);color:var(--text)" onclick="closeCollectCPModalDirect()">❌ Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- DELETE WALLET MODAL -->
+<div class="modal-overlay" id="modal-del-wallet" onclick="if(event.target===this)closeDelWalletModal()">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <h3 style="color:var(--red)">🗑️ Delete Wallet / பணப்பை நீக்கு</h3>
+    <div style="background:var(--redD);border:1px solid rgba(255,82,82,0.3);border-radius:12px;padding:14px;margin-bottom:12px;text-align:center">
+      <div style="font-size:17px;font-weight:800;color:var(--red)" id="del-wallet-name"></div>
+      <div style="font-size:11px;color:var(--textD);margin-top:4px">இந்த பணப்பையை நீக்கவா? / Delete this wallet?</div>
+    </div>
+    <div id="del-wallet-warn" style="display:none;background:rgba(245,166,35,0.08);border:1px solid rgba(245,166,35,0.3);border-radius:9px;padding:9px 12px;margin-bottom:12px;font-size:10px;color:var(--accent);font-weight:700">
+      ⚠️ This wallet has recharge records!
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <button class="btn btn-red" onclick="confirmDeleteWallet()">🗑️ Yes, Delete</button>
+      <button class="btn" style="background:var(--surface2);color:var(--text)" onclick="closeDelWalletModal()">❌ Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- LOGOUT CONFIRM MODAL -->
+<div class="modal-overlay" id="modal-logout-confirm">
+  <div class="modal-box" style="text-align:center">
+    <div class="modal-handle"></div>
+    <div style="font-size:40px;margin-bottom:12px">⏻</div>
+    <h3 style="color:var(--red);margin-bottom:8px">Logout? / வெளியேறவா?</h3>
+    <p style="font-size:11px;color:var(--textD);margin-bottom:20px;font-family:var(--tamil)">உங்கள் தரவு பாதுகாப்பாக சேமிக்கப்பட்டுள்ளது.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <button class="btn btn-red" onclick="_confirmLogout()">✅ Yes, Logout</button>
+      <button class="btn" style="background:var(--surface2);color:var(--text);border:1px solid var(--border2)" onclick="_cancelLogout()">❌ Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════════════
+//  GLOBAL ERROR GUARD — catches runtime errors silently
+// ════════════════════════════════════════
+window.onerror=function(msg,src,line,col,err){
+  console.error('DTH Error:',msg,'@',line,col,err);
+  return true;
+};
+window.onunhandledrejection=function(e){
+  console.error('DTH Promise error:',e.reason);
+};
+
+// ── CACHED NUMBER FORMATTERS (created once, reused everywhere) ──
+const _fmtInt=new Intl.NumberFormat('en-IN',{maximumFractionDigits:0});
+const _fmtDec=new Intl.NumberFormat('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});
+function fmtI(n){return _fmtInt.format(n);}
+function fmtD(n){return _fmtDec.format(n);}
+
+// ════════════════════════════════════════
+//  AUTH SYSTEM
+// ════════════════════════════════════════
+const DEFAULT_CREDS = {id:'admin',pwd:'dthaccounts'};
+let creds;
+try{creds=JSON.parse(localStorage.getItem('u888_creds')||'null')||DEFAULT_CREDS;}
+catch(e){creds=DEFAULT_CREDS;}
+let currentUser = null;
+
+// ── TAB SWITCHER ──
+function switchTab(tab){
+  const loginCard=document.getElementById('login-card');
+  const signupPanel=document.getElementById('signup-panel');
+  const tabLogin=document.getElementById('tab-login');
+  const tabSignup=document.getElementById('tab-signup');
+  if(tab==='login'){
+    loginCard.style.display='block';
+    signupPanel.style.display='none';
+    tabLogin.classList.add('active');
+    tabSignup.classList.remove('active');
+    clearLoginErr();
+  } else {
+    loginCard.style.display='none';
+    signupPanel.style.display='block';
+    tabLogin.classList.remove('active');
+    tabSignup.classList.add('active');
+    clearSignupMsg();
+  }
+}
+function toggleSignup(){switchTab('signup');}
+
+// ── PASSWORD VISIBILITY TOGGLE ──
+function togglePwd(inputId,eyeEl){
+  const inp=document.getElementById(inputId);
+  if(!inp)return;
+  const isText=inp.type==='text';
+  inp.type=isText?'password':'text';
+  eyeEl.style.opacity=isText?'0.45':'1';
+}
+function clearSignupMsg(){
+  const e=document.getElementById('signup-err');
+  const o=document.getElementById('signup-ok');
+  if(e){e.style.display='none';e.textContent='';}
+  if(o)o.style.display='none';
+}
+function doSignup(){
+  const name=(document.getElementById('su-name').value||'').trim();
+  const cc=(document.getElementById('su-cc').value||'').trim();
+  const mobile=(document.getElementById('su-mobile').value||'').trim();
+  const email=(document.getElementById('su-email').value||'').trim();
+  const uid=(document.getElementById('su-id').value||'').trim();
+  const pwd=document.getElementById('su-pwd').value||'';
+  const pwd2=document.getElementById('su-pwd2').value||'';
+  const err=document.getElementById('signup-err');
+  const ok=document.getElementById('signup-ok');
+  function showErr(msg){err.textContent=msg;err.style.display='block';ok.style.display='none';}
+  if(!name){showErr('⚠️ Enter your full name!');return;}
+  if(!cc||!cc.startsWith('+')){showErr('⚠️ Enter country code e.g. +91');return;}
+  if(!mobile||mobile.length<6){showErr('⚠️ Enter a valid mobile number!');return;}
+  if(!email||!email.includes('@')){showErr('⚠️ Enter a valid email address!');return;}
+  if(!uid||uid.length<3){showErr('⚠️ User ID must be at least 3 characters!');return;}
+  if(!pwd||pwd.length<4){showErr('⚠️ Password must be at least 4 characters!');return;}
+  if(pwd!==pwd2){showErr('⚠️ Passwords do not match!');return;}
+  // Save credentials + profile
+  creds={id:uid,pwd:pwd};
+  localStorage.setItem('u888_creds',JSON.stringify(creds));
+  localStorage.setItem('u888_profile',JSON.stringify({name,cc,mobile,email}));
+  err.style.display='none';
+  ok.style.display='block';
+  // Auto-login after 1s
+  setTimeout(()=>{
+    const li=document.getElementById('login-id');
+    const lp=document.getElementById('login-pwd');
+    if(li)li.value=uid;
+    if(lp)lp.value=pwd;
+    doLogin();
+  },1000);
+}
+
+// ── SESSION PERSISTENCE ──
+(function restoreSession(){
+  const saved=localStorage.getItem('u888_session');
+  if(saved && saved===creds.id){
+    currentUser=saved;
+    const savedBiz=localStorage.getItem('u888_biz')||'DTH ACCOUNTS';
+    const ls=document.getElementById('login-screen');
+    const ap=document.getElementById('app');
+    const mn=document.getElementById('main-nav');
+    const mh=document.getElementById('main-header');
+    if(ls)ls.style.display='none';
+    if(ap)ap.style.display='block';
+    if(mn)mn.style.display='flex';
+    if(mh)mh.style.display='block';
+    _initPageCache();
+    const su=document.getElementById('strip-user');if(su)su.textContent=currentUser;
+    _updateBizDisplay(savedBiz);
+    // Single rAF — all renders in one frame
+    requestAnimationFrame(()=>{
+      updateRateDisplay();
+      _renderAllNow();
+      renderCashPending();
+      renderCommission();
+      if(!buyRate||!sellRate)setTimeout(()=>showToast('👆 Set exchange rate first!',''),900);
+    });
+  }
+})();
+
+function doLogin(){
+  const uid=(document.getElementById('login-id')||{}).value||'';
+  const pwd=(document.getElementById('login-pwd')||{}).value||'';
+  const bizInp=document.getElementById('login-biz');
+  const biz=bizInp?bizInp.value.trim():'';
+  if(uid.trim()===creds.id && pwd===creds.pwd){
+    currentUser=uid.trim();
+    if(biz) try{localStorage.setItem('u888_biz',biz);}catch(e){}
+    const savedBiz=biz||localStorage.getItem('u888_biz')||'DTH ACCOUNTS';
+    try{localStorage.setItem('u888_session',currentUser);}catch(e){}
+    const ls=document.getElementById('login-screen');
+    const ap=document.getElementById('app');
+    const mn=document.getElementById('main-nav');
+    const mh=document.getElementById('main-header');
+    if(ls)ls.style.display='none';
+    if(ap)ap.style.display='block';
+    if(mn)mn.style.display='flex';
+    if(mh)mh.style.display='block';
+    _initPageCache();
+    const su=document.getElementById('strip-user');if(su)su.textContent=currentUser;
+    _updateBizDisplay(savedBiz);
+    // Single rAF — all renders in one frame
+    requestAnimationFrame(()=>{
+      updateRateDisplay();
+      _renderAllNow();
+      renderCashPending();
+      renderCommission();
+      if(!buyRate||!sellRate)setTimeout(()=>showToast('👆 Set exchange rate first!',''),900);
+    });
+  } else {
+    const err=document.getElementById('login-err');
+    if(err) err.style.display='block';
+  }
+}
+function _updateBizDisplay(name){
+  const n = name || localStorage.getItem('u888_biz') || 'DTH ACCOUNTS';
+  const el = document.getElementById('header-biz-name');
+  if(el) el.textContent = n.toUpperCase();
+  const sub = document.getElementById('header-biz-sub');
+  if(sub) sub.textContent = n;
+  // pre-fill biz input in settings
+  const inp = document.getElementById('biz-name-input');
+  if(inp) inp.value = n !== 'DTH ACCOUNTS' ? n : (localStorage.getItem('u888_biz')||'');
+  // pre-fill login biz field
+  const linp = document.getElementById('login-biz');
+  if(linp && !linp.value) linp.value = localStorage.getItem('u888_biz')||'';
+}
+function previewBizName(val){
+  if(val) localStorage.setItem('u888_biz', val);
+}
+function saveBizFromLogin(){
+  const inp = document.getElementById('login-biz');
+  const val = inp ? inp.value.trim() : '';
+  if(!val){ alert('Please enter your business name!'); return; }
+  localStorage.setItem('u888_biz', val);
+  _updateBizDisplay(val);
+  // Update banner display
+  const d = document.getElementById('login-biz-display');
+  const s = document.getElementById('login-biz-display-sub');
+  if(d) d.textContent = val.toUpperCase();
+  if(s) s.textContent = val;
+  // Hide edit wrap, show edit button
+  const ew = document.getElementById('biz-edit-wrap');
+  const eb = document.querySelector('.biz-banner-edit');
+  if(ew) ew.style.display='none';
+  if(eb) eb.style.display='inline-flex';
+}
+function saveBusinessName(){
+  const n = document.getElementById('biz-name-input').value.trim();
+  if(!n){showToast('⚠️ Enter a business name!','err');return;}
+  localStorage.setItem('u888_biz', n);
+  _updateBizDisplay(n);
+  showToast('✅ Business name saved: '+n,'ok');
+}
+function clearLoginErr(){ document.getElementById('login-err').style.display='none'; }
+function doLogout(){
+  // Use custom modal instead of confirm() which may be blocked on some browsers
+  _showLogoutConfirm();
+}
+function _showLogoutConfirm(){
+  const overlay = document.getElementById('modal-logout-confirm');
+  if(overlay) overlay.classList.add('open');
+}
+function _confirmLogout(){
+  const overlay = document.getElementById('modal-logout-confirm');
+  if(overlay) overlay.classList.remove('open');
+  currentUser=null;
+  // ── Clear persisted session ──
+  try{localStorage.removeItem('u888_session');}catch(e){}
+  document.getElementById('login-id').value='';
+  document.getElementById('login-pwd').value='';
+  // Restore biz input in banner
+  const bizInp = document.getElementById('login-biz');
+  const saved = localStorage.getItem('u888_biz')||'';
+  if(bizInp) bizInp.value = saved;
+  const d = document.getElementById('login-biz-display');
+  const s = document.getElementById('login-biz-display-sub');
+  if(d) d.textContent = saved ? saved.toUpperCase() : 'YOUR BUSINESS';
+  if(s) s.textContent = saved || 'உங்கள் வணிகம்';
+  document.getElementById('app').style.display='none';
+  document.getElementById('main-nav').style.display='none';
+  const mh=document.getElementById('main-header');if(mh)mh.style.display='none';
+  document.getElementById('login-screen').style.display='flex';
+}
+function _cancelLogout(){
+  const overlay = document.getElementById('modal-logout-confirm');
+  if(overlay) overlay.classList.remove('open');
+}
+function changeCredentials(){
+  const newUid = document.getElementById('new-uid').value.trim();
+  const curPwd = document.getElementById('cur-pwd-chk').value;
+  const newPwd = document.getElementById('new-pwd').value;
+  const confPwd = document.getElementById('conf-pwd').value;
+  if(!newUid){ showToast('⚠️ Enter new user ID!','err'); return; }
+  if(curPwd !== creds.pwd){ showToast('❌ Current password wrong!','err'); return; }
+  if(!newPwd || newPwd.length < 4){ showToast('⚠️ Password min 4 chars!','err'); return; }
+  if(newPwd !== confPwd){ showToast('⚠️ Passwords do not match!','err'); return; }
+  creds = {id:newUid, pwd:newPwd};
+  localStorage.setItem('u888_creds', JSON.stringify(creds));
+  currentUser = newUid;
+  document.getElementById('strip-user').textContent = newUid;
+  document.getElementById('acc-userid').textContent = newUid;
+  ['new-uid','cur-pwd-chk','new-pwd','conf-pwd'].forEach(id=>document.getElementById(id).value='');
+  showToast('🔐 Login updated! ID: '+newUid,'ok');
+}
+
+// ════════════════════════════════════════
+//  DATA  (safe load — try/catch prevents crashes on corrupted storage)
+// ════════════════════════════════════════
+let walletToDelete=null;
+function _safeLoad(key,fallback){
+  try{const v=localStorage.getItem(key);return v?JSON.parse(v):fallback;}
+  catch(e){console.warn('DTH load err',key,e);localStorage.removeItem(key);return fallback;}
+}
+function _safeNum(key,fallback){
+  try{const v=parseFloat(localStorage.getItem(key)||String(fallback));return isNaN(v)?fallback:v;}
+  catch(e){return fallback;}
+}
+let walletTopups=_safeLoad('u888_topups',{});
+let wallets=_safeLoad('u888_w',null)||{"Quick Pay":10000,"TS DTH":5000};
+let records=_safeLoad('u888_r',[]);
+let credits=_safeLoad('u888_c',{});
+let cashPendings=_safeLoad('u888_cp',{});
+let buyRate=_safeNum('u888_buy',0);
+let sellRate=_safeNum('u888_sell',0);
+let commissionCompanies=_safeLoad('u888_comm',{});
+let reinvestedProfit=_safeNum('u888_reinvested',0);
+let walletCommRates=_safeLoad('u888_wcr',{});
+let modalAction=null;
+let collectTarget=null;
+let collectCPTarget=null;
+let selectedPayment='Cash';
+
+// ════════════════════════════════════════
+//  FAST DOM CACHE — single getElementById per element
+// ════════════════════════════════════════
+const _$={};
+function $(id){return _$[id]||(_$[id]=document.getElementById(id));}
+// Invalidate cache entry when element might be replaced
+function $bust(id){delete _$[id];}
+
+// ── PERFORMANCE HELPERS ──
+// Memoized color cache — computed once per wallet name
+const _colorCache={};
+const _bgCache={};
+function wColor(name){
+  if(_colorCache[name])return _colorCache[name];
+  const c=['#448aff','#ab47bc','#00e676','#ffa726','#ef5350','#26c6da','#7e57c2','#66bb6a'];
+  let h=0;for(let ch of name)h=(h*31+ch.charCodeAt(0))%c.length;
+  return(_colorCache[name]=c[h]);
+}
+function wBg(name){
+  if(_bgCache[name])return _bgCache[name];
+  const b=['rgba(68,138,255,0.12)','rgba(171,71,188,0.12)','rgba(0,230,118,0.12)','rgba(255,167,38,0.12)','rgba(239,83,80,0.12)','rgba(38,198,218,0.12)','rgba(126,87,194,0.12)','rgba(102,187,106,0.12)'];
+  let h=0;for(let ch of name)h=(h*31+ch.charCodeAt(0))%b.length;
+  return(_bgCache[name]=b[h]);
+}
+
+// Debounced save — batches rapid saves into a single write 500ms later
+let _saveTimer=null;
+function save(immediate){
+  if(immediate){_doSave();return;}
+  clearTimeout(_saveTimer);
+  _saveTimer=setTimeout(_doSave,300);
+}
+function _doSave(){
+  // Batch all writes in one synchronous block to minimize storage overhead
+  const s=localStorage;
+  try{
+    s.setItem('u888_w',JSON.stringify(wallets));
+    s.setItem('u888_r',JSON.stringify(records));
+    s.setItem('u888_c',JSON.stringify(credits));
+    s.setItem('u888_cp',JSON.stringify(cashPendings));
+    s.setItem('u888_buy',buyRate.toString());
+    s.setItem('u888_sell',sellRate.toString());
+    s.setItem('u888_comm',JSON.stringify(commissionCompanies));
+    s.setItem('u888_reinvested',reinvestedProfit.toString());
+    s.setItem('u888_wcr',JSON.stringify(walletCommRates));
+  }catch(e){console.warn('DTH save err',e);}
+}
+
+// Cached pending-ID set — rebuilt only when needed
+let _pendingIdsCache=null;
+function getPendingIds(){
+  if(_pendingIdsCache)return _pendingIdsCache;
+  const s=new Set();
+  Object.values(cashPendings).forEach(cp=>cp.entries.forEach(e=>{if(e.id&&e.amount>0)s.add(e.id);}));
+  Object.values(credits).forEach(cr=>cr.entries.forEach(e=>{if(e.id&&e.amount>0)s.add(e.id);}));
+  _pendingIdsCache=s;
+  return s;
+}
+function invalidatePendingCache(){_pendingIdsCache=null;}
+
+// Cached wallet usage totals — rebuilt only when records change
+let _walletUsageCache=null;
+function getWalletUsage(){
+  if(_walletUsageCache)return _walletUsageCache;
+  const m={};
+  for(const r of records){m[r.wallet]=(m[r.wallet]||0)+r.costINR;}
+  _walletUsageCache=m;
+  return m;
+}
+function invalidateUsageCache(){_walletUsageCache=null;}
+
+// ════════════════════════════════════════
+//  NAV
+// ════════════════════════════════════════
+// ── Page & nav button element caches ──
+const _pages={};const _navBtns=[];
+function _initPageCache(){
+  document.querySelectorAll('.page').forEach(p=>_pages[p.id.replace('page-','')]=p);
+  document.querySelectorAll('nav button').forEach(b=>_navBtns.push(b));
+}
+
+function showPage(id,btn){
+  // Hide all pages efficiently
+  for(const k in _pages){if(_pages[k])_pages[k].classList.remove('active');}
+  _navBtns.forEach(b=>b&&b.classList.remove('active'));
+  const pg=_pages[id]||document.getElementById('page-'+id);
+  if(pg) pg.classList.add('active');
+  if(btn) btn.classList.add('active');
+  // Scroll content area back to top on tab switch
+  const sa=document.getElementById('page-scroll-area');
+  if(sa) sa.scrollTop=0;
+  // Lazy-render page content
+  requestAnimationFrame(()=>{
+    if(id==='wallet'){renderWalletManage();loadRateInputs();loadReinvestUI();}
+    else if(id==='report') renderReport();
+    else if(id==='history') renderHistory();
+    else if(id==='credit') renderCredit();
+    else if(id==='cashpend') renderCashPending();
+    else if(id==='commission') renderCommission();
+    else if(id==='settings'){
+      const uid=document.getElementById('acc-userid');
+      const ll=document.getElementById('acc-lastlogin');
+      const bi=document.getElementById('biz-name-input');
+      if(uid) uid.textContent=currentUser||creds.id;
+      if(ll) ll.textContent=localStorage.getItem('u888_lastlogin')||'-';
+      if(bi) bi.value=localStorage.getItem('u888_biz')||'';
+    }
+  });
+}
+
+// ════════════════════════════════════════
+//  RATE MODAL
+// ════════════════════════════════════════
+function openRateModal(){
+  document.getElementById('modal-buy-rate').value=buyRate||'';
+  document.getElementById('modal-sell-rate').value=sellRate||'';
+  document.getElementById('modal-rate').classList.add('open');
+}
+function closeRateModal(e){if(e.target===document.getElementById('modal-rate'))closeRateModalDirect();}
+function closeRateModalDirect(){document.getElementById('modal-rate').classList.remove('open');}
+function saveRateModal(){
+  const b=parseFloat(document.getElementById('modal-buy-rate').value);
+  const s=parseFloat(document.getElementById('modal-sell-rate').value);
+  if(!b||b<=0||!s||s<=0){showToast('⚠️ Enter both rates!','err');return;}
+  if(s<b){showToast('⚠️ Sell ≥ Buy rate!','err');return;}
+  buyRate=b;sellRate=s;
+  save(true);updateRateDisplay();calcProfit();closeRateModalDirect();
+  showToast('✅ Rate: Buy ரு'+b.toFixed(2)+' | Sell ரு'+s.toFixed(2),'ok');
+}
+
+// ════════════════════════════════════════
+//  RATES
+// ════════════════════════════════════════
+function loadRateInputs(){
+  document.getElementById('buy-rate-input').value=buyRate||'';
+  document.getElementById('sell-rate-input').value=sellRate||'';
+  if(buyRate&&sellRate) showMarginPreview();
+}
+function updateRatePreview(){
+  const b=parseFloat(document.getElementById('buy-rate-input').value)||0;
+  const s=parseFloat(document.getElementById('sell-rate-input').value)||0;
+  if(b>0&&s>0){
+    document.getElementById('rate-preview-box').style.display='block';
+    document.getElementById('rate-margin-preview').textContent='ரு'+(s-b).toFixed(2);
+  } else document.getElementById('rate-preview-box').style.display='none';
+}
+function showMarginPreview(){
+  document.getElementById('rate-preview-box').style.display='block';
+  document.getElementById('rate-margin-preview').textContent='ரு'+(sellRate-buyRate).toFixed(2);
+}
+function saveRates(){
+  const b=parseFloat(document.getElementById('buy-rate-input').value);
+  const s=parseFloat(document.getElementById('sell-rate-input').value);
+  if(!b||b<=0||!s||s<=0){showToast('⚠️ Enter both rates!','err');return;}
+  if(s<b){showToast('⚠️ Sell ≥ Buy rate!','err');return;}
+  buyRate=b;sellRate=s;save(true);updateRateDisplay();calcProfit();
+  showToast('✅ Rates saved! Buy: ரு'+b.toFixed(2)+' | Sell: ரு'+s.toFixed(2),'ok');
+}
+function updateRateDisplay(){
+  $('rate-display').textContent=sellRate?sellRate.toFixed(2):'?';
+  $('buy-rate-val').textContent=buyRate?buyRate.toFixed(2):'0.00';
+  $('sell-rate-val').textContent=sellRate?sellRate.toFixed(2):'0.00';
+  $('strip-buy').textContent=buyRate?'ரு'+buyRate.toFixed(2):'-';
+  $('strip-sell').textContent=sellRate?'ரு'+sellRate.toFixed(2):'-';
+  $('strip-margin').textContent=(buyRate&&sellRate)?'ரு'+(sellRate-buyRate).toFixed(2):'-';
+}
+
+// ════════════════════════════════════════
+//  PROFIT REINVEST
+// ════════════════════════════════════════
+function calcTotalProfit(){
+  const pendingIds=getPendingIds();
+  function isPending(r){return r.payment==='CashPending'||r.payment==='Credit'||pendingIds.has(r.id);}
+  function collectedAmt(r){return r.payment==='Credit'?r.creditCollected||0:r.cashCollected||0;}
+  return records.reduce((s,r)=>{
+    if(isPending(r)){const c=collectedAmt(r);return s+(c>0?(c/r.incomeLKR)*(r.incomeLKR-r.costLKR):0);}
+    return s+(r.profit||0);
+  },0);
+}
+function calcAvailableProfit(){
+  // Available = total earned profit minus what has already been reinvested
+  return Math.max(0, calcTotalProfit() - reinvestedProfit);
+}
+
+function loadReinvestUI(){
+  const totalProfit = calcTotalProfit();
+  const available   = calcAvailableProfit();
+  const alreadyUsed = reinvestedProfit;
+
+  // Total profit
+  document.getElementById('reinvest-profit-lkr').textContent='ரு'+totalProfit.toFixed(2);
+
+  // INR equivalent bar
+  const bar=document.getElementById('ri-inr-equiv-bar');
+  if(bar){
+    bar.style.display='flex';
+    const inrEq=buyRate>0?available/buyRate:0;
+    document.getElementById('ri-profit-inr-val').textContent=
+      buyRate>0?'₹'+inrEq.toFixed(2):'Set rate first';
+  }
+
+  // Available profit display
+  const avEl=document.getElementById('ri-available-lkr');
+  if(avEl) avEl.textContent='ரு'+available.toFixed(2);
+
+  // Already reinvested display
+  const usedEl=document.getElementById('ri-used-lkr');
+  if(usedEl) usedEl.textContent='ரு'+alreadyUsed.toFixed(2);
+
+  // Auto-fill full available amount
+  document.getElementById('ri-lkr-amount').value=available>0?available.toFixed(2):'';
+  document.getElementById('ri-rate').value=buyRate||'';
+  document.getElementById('ri-preview').style.display='none';
+  if(available>0&&buyRate) calcReinvest();
+  refreshRiWallet();
+}
+
+function refreshRiWallet(){
+  const sel=document.getElementById('ri-wallet');
+  sel.innerHTML=Object.keys(wallets).map(w=>`<option value="${w}">${w} (₹${fmtI(wallets[w])})</option>`).join('')||'<option>No wallets</option>';
+}
+
+function calcReinvest(){
+  const lkr=parseFloat(document.getElementById('ri-lkr-amount').value)||0;
+  const rate=parseFloat(document.getElementById('ri-rate').value)||0;
+  const box=document.getElementById('ri-preview');
+  if(lkr>0&&rate>0){
+    const inr=lkr/rate;
+    box.style.display='block';
+    document.getElementById('ri-lkr-show').textContent=lkr.toFixed(2);
+    document.getElementById('ri-rate-show').textContent=rate.toFixed(2);
+    document.getElementById('ri-inr-show').textContent='₹'+inr.toFixed(2);
+  } else box.style.display='none';
+}
+
+function doReinvest(){
+  const lkr=parseFloat(document.getElementById('ri-lkr-amount').value);
+  const rate=parseFloat(document.getElementById('ri-rate').value);
+  const walletName=document.getElementById('ri-wallet').value;
+  if(!lkr||lkr<=0){showToast('⚠️ Enter LKR profit amount!','err');return;}
+  if(!rate||rate<=0){showToast('⚠️ Enter conversion rate!','err');return;}
+  if(!walletName){showToast('⚠️ Select a wallet!','err');return;}
+  const available=calcAvailableProfit();
+  if(lkr>available+0.01){showToast('❌ Exceeds available profit! Max: ரு'+available.toFixed(2),'err');return;}
+  const inr=lkr/rate;
+  // Add INR to wallet
+  wallets[walletName]=(wallets[walletName]||0)+inr;
+  // Track reinvested amount so profit shows as zero after
+  reinvestedProfit+=lkr;
+  // Log the topup
+  if(!walletTopups[walletName])walletTopups[walletName]=[];
+  walletTopups[walletName].unshift({
+    date:new Date().toLocaleDateString('en-IN'),
+    time:new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}),
+    inr, paidRate:rate, lkrPaid:lkr,
+    note:'🔄 Profit Reinvested'
+  });
+  localStorage.setItem('u888_topups',JSON.stringify(walletTopups));
+  save(true);renderAll();renderWalletManage();loadReinvestUI();
+  showToast('🔄 Reinvested! ரு'+lkr.toFixed(0)+' → ₹'+inr.toFixed(2)+' added to '+walletName,'ok');
+}
+
+// ════════════════════════════════════════
+//  PAYMENT SELECT
+// ════════════════════════════════════════
+const _payBtns=[];function _cachePayBtns(){if(!_payBtns.length)document.querySelectorAll('#payment-seg button').forEach(b=>_payBtns.push(b));}
+function selectPayment(type,btn){
+  selectedPayment=type;
+  _cachePayBtns();_payBtns.forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('credit-note').style.display=type==='Credit'?'block':'none';
+  document.getElementById('cashpend-note').style.display=type==='CashPending'?'block':'none';
+}
+
+// ════════════════════════════════════════
+//  WALLET SELECT
+// ════════════════════════════════════════
+function refreshWalletSelect(){
+  const sel=document.getElementById('f-wallet');
+  const cur=sel.value;
+  sel.innerHTML=Object.keys(wallets).map(w=>`<option value="${w}" ${w===cur?'selected':''}>${w} (₹${fmtI(wallets[w])})</option>`).join('')||'<option value="">-- Add a wallet first --</option>';
+}
+
+// ════════════════════════════════════════
+//  PROFIT CALC
+// ════════════════════════════════════════
+let _calcProfitTimer=null;
+function calcProfit(){
+  clearTimeout(_calcProfitTimer);
+  _calcProfitTimer=requestAnimationFrame(_calcProfitNow);
+}
+function _calcProfitNow(){
+  const cost=parseFloat($('f-cost').value)||0;
+  const incomeLKR=parseFloat($('f-income-lkr').value)||0;
+  const wallet=$('f-wallet').value;
+  const costBuyLKR=buyRate>0?cost*buyRate:0;
+  const sellValLKR=sellRate>0?cost*sellRate:0;
+  const profit=incomeLKR-costBuyLKR;
+  const commRate=walletCommRates[wallet]||0;
+  const walletComm=commRate>0&&cost>0?parseFloat((cost*commRate).toFixed(2)):0;
+  const actualDeduct=parseFloat((cost-walletComm).toFixed(2));
+  $('c-inr').textContent='₹'+cost.toFixed(2);
+  const commRow=$('c-wallet-comm-row');
+  const deductRow=$('c-actual-deduct-row');
+  if(walletComm>0&&cost>0){
+    commRow.style.display='flex';deductRow.style.display='flex';
+    $('c-wallet-comm').textContent='+₹'+walletComm.toFixed(2);
+    $('c-actual-deduct').textContent='₹'+actualDeduct.toFixed(2);
+  } else {
+    commRow.style.display='none';deductRow.style.display='none';
+  }
+  $('c-cost-lkr').textContent='ரு'+costBuyLKR.toFixed(2);
+  $('c-sell-val').textContent='ரு'+sellValLKR.toFixed(2);
+  $('c-income-lkr').textContent='ரு'+incomeLKR.toFixed(2);
+  const el=$('profit-preview');
+  el.textContent='ரு'+profit.toFixed(2)+(walletComm>0?' | +₹'+walletComm.toFixed(2)+' 💰':'' );
+  el.className='profit-big'+(profit<0?' neg':'');
+}
+
+// ════════════════════════════════════════
+//  ADD RECHARGE
+// ════════════════════════════════════════
+function addRecharge(){
+  if(!buyRate||!sellRate){showToast('⚠️ Set exchange rate first!','err');return;}
+  const cust=document.getElementById('f-cust').value.trim();
+  const mobile=document.getElementById('f-mobile').value.trim();
+  const dthNum=document.getElementById('f-dth').value.trim();
+  const operator=document.getElementById('f-operator').value;
+  const wallet=document.getElementById('f-wallet').value;
+  const cost=parseFloat(document.getElementById('f-cost').value);
+  const incomeLKR=parseFloat(document.getElementById('f-income-lkr').value);
+  if(!cust){showToast('⚠️ Enter customer name!','err');return;}
+  if(!wallet){showToast('⚠️ Select a wallet!','err');return;}
+  if(!cost||cost<=0){showToast('⚠️ Enter INR cost!','err');return;}
+  if(!incomeLKR||incomeLKR<=0){showToast('⚠️ Enter LKR charge!','err');return;}
+  if(cost>(wallets[wallet]||0)){showToast('❌ Insufficient wallet balance!','err');return;}
+  const costLKR=cost*buyRate;
+  const isDeferred=(selectedPayment==='CashPending'||selectedPayment==='Credit');
+  const profit=isDeferred?0:(incomeLKR-costLKR);
+  const pendingProfit=isDeferred?(incomeLKR-costLKR):0;
+  const now=new Date();
+  // wallet commission calc
+  const commRate=walletCommRates[wallet]||0;
+  const walletComm=commRate>0?parseFloat((cost*commRate).toFixed(2)):0;
+  const actualDeduct=parseFloat((cost-walletComm).toFixed(2));
+  const rec={
+    id:Date.now(),
+    date:now.toLocaleDateString('en-IN'),
+    time:now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}),
+    cust,mobile,dthNum,operator,wallet,
+    payment:selectedPayment,
+    costINR:cost,incomeLKR,costLKR,profit,pendingProfit,
+    buyRate,sellRate,
+    walletComm,actualDeduct,
+    cashCollected:selectedPayment==='Cash'?incomeLKR:0,
+    creditCollected:0
+  };
+  records.unshift(rec);
+  // Apply wallet commission rate: wallet deducts less, difference = commission earned
+  wallets[wallet]-=actualDeduct;
+  // Auto-record wallet commission if applicable
+  if(walletComm>0){
+    if(!commissionCompanies[wallet])commissionCompanies[wallet]={entries:[],totalEarned:0};
+    commissionCompanies[wallet].entries.unshift({
+      id:Date.now()+1,
+      date:rec.date,time:rec.time,
+      amount:walletComm,
+      note:'🔄 Auto Wallet Comm. ('+rec.cust+' ₹'+cost+')'
+    });
+    commissionCompanies[wallet].totalEarned=(commissionCompanies[wallet].totalEarned||0)+walletComm;
+  }
+  if(selectedPayment==='Credit'){
+    if(!credits[cust])credits[cust]={total:0,entries:[]};
+    credits[cust].total+=incomeLKR;
+    credits[cust].entries.unshift({id:rec.id,date:rec.date,amount:incomeLKR,operator,note:'ரீசார்ஜ் கடன்'});
+  }
+  if(selectedPayment==='CashPending'){
+    if(!cashPendings[cust])cashPendings[cust]={total:0,entries:[]};
+    cashPendings[cust].total+=incomeLKR;
+    cashPendings[cust].entries.unshift({id:rec.id,date:rec.date,amount:incomeLKR,collected:0,operator,note:'பணம் நிலுவை'});
+  }
+  save(true);
+  invalidatePendingCache();invalidateUsageCache();
+  ['f-cust','f-mobile','f-dth','f-cost','f-income-lkr'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('profit-preview').textContent='ரு0';
+  document.getElementById('profit-preview').className='profit-big';
+  ['c-inr','c-cost-lkr','c-sell-val','c-income-lkr'].forEach(id=>document.getElementById(id).textContent='ரு0');
+  document.getElementById('c-inr').textContent='₹0';
+  renderAll();
+  const commMsg=walletComm>0?' 💰 Wallet Comm: ₹'+walletComm.toFixed(2):'';
+  const msg=selectedPayment==='CashPending'
+    ?'🕐 Saved! Cash Pending ரு'+incomeLKR.toFixed(0)+commMsg
+    :selectedPayment==='Credit'
+      ?'📋 Saved! Credit ரு'+incomeLKR.toFixed(0)+commMsg
+      :'✅ Saved! Profit: ரு'+profit.toFixed(2)+commMsg;
+  showToast(msg,'ok');
+}
+
+// ════════════════════════════════════════
+//  WALLET MANAGEMENT
+// ════════════════════════════════════════
+function addWallet(){
+  const name=document.getElementById('new-wname').value.trim();
+  const bal=parseFloat(document.getElementById('new-wbal').value)||0;
+  const commPct=parseFloat(document.getElementById('new-wcomm').value)||0;
+  if(!name){showToast('⚠️ Enter wallet name!','err');return;}
+  if(wallets[name]!==undefined){showToast('⚠️ Name already exists!','err');return;}
+  wallets[name]=bal;
+  if(commPct>0) walletCommRates[name]=commPct/100;
+  invalidateUsageCache();save(true);
+  document.getElementById('new-wname').value='';
+  document.getElementById('new-wbal').value='';
+  document.getElementById('new-wcomm').value='';
+  refreshWalletSelect();renderAll();renderWalletManage();loadReinvestUI&&loadReinvestUI();
+  const commMsg=commPct>0?' | Comm: '+commPct+'%':'';
+  showToast('✅ Wallet '+name+' added!'+commMsg,'ok');
+}
+function deleteWallet(name){
+  walletToDelete=name;
+  const used=records.some(r=>r.wallet===name);
+  document.getElementById('del-wallet-name').textContent=name;
+  document.getElementById('del-wallet-warn').style.display=used?'block':'none';
+  document.getElementById('modal-del-wallet').classList.add('open');
+}
+function confirmDeleteWallet(){
+  if(!walletToDelete)return;
+  delete wallets[walletToDelete];invalidateUsageCache();save(true);refreshWalletSelect();renderAll();
+  if(document.getElementById('page-wallet').classList.contains('active'))renderWalletManage();
+  showToast('🗑️ '+walletToDelete+' deleted','ok');
+  walletToDelete=null;document.getElementById('modal-del-wallet').classList.remove('open');
+}
+function closeDelWalletModal(){walletToDelete=null;document.getElementById('modal-del-wallet').classList.remove('open');}
+
+// WALLET MODAL
+function openModal(type,walletName){
+  modalAction={type,wallet:walletName};
+  const isAdd=type==='add';
+  document.getElementById('modal-title').textContent=(isAdd?'➕ Top Up: ':'➖ Remove from: ')+walletName;
+  document.getElementById('modal-label').textContent=isAdd?'Amount to Add (₹ INR)':'Amount to Remove (₹ INR)';
+  document.getElementById('modal-cur-bal').textContent='₹'+(wallets[walletName]||0).toLocaleString('en-IN');
+  const btn=document.getElementById('modal-confirm');
+  btn.className='btn '+(isAdd?'btn-green':'btn-red');
+  btn.textContent=isAdd?'✅ Add':'➖ Remove';
+  document.getElementById('modal-amount').value='';
+  document.getElementById('modal-buy-paid-rate').value=buyRate||'';
+  document.getElementById('topup-cost-box').style.display='none';
+  document.getElementById('modal-rate-row').style.display=isAdd?'block':'none';
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal(e){if(e.target===document.getElementById('modal'))closeModalDirect();}
+function closeModalDirect(){document.getElementById('modal').classList.remove('open');modalAction=null;}
+function calcTopupCost(){
+  const amt=parseFloat(document.getElementById('modal-amount').value)||0;
+  const rate=parseFloat(document.getElementById('modal-buy-paid-rate').value)||0;
+  const box=document.getElementById('topup-cost-box');
+  if(amt>0&&rate>0){
+    box.style.display='block';
+    document.getElementById('topup-lkr-cost').textContent='ரு'+(amt*rate).toFixed(2);
+    document.getElementById('topup-sell-val').textContent=sellRate?'ரு'+(amt*sellRate).toFixed(2):'-';
+  } else box.style.display='none';
+}
+function confirmModal(){
+  const val=parseFloat(document.getElementById('modal-amount').value);
+  if(!val||val<=0){showToast('⚠️ Enter valid amount!','err');return;}
+  const{type,wallet}=modalAction;
+  if(type==='add'){
+    const paidRate=parseFloat(document.getElementById('modal-buy-paid-rate').value)||0;
+    wallets[wallet]+=val;
+    if(!walletTopups[wallet])walletTopups[wallet]=[];
+    walletTopups[wallet].unshift({
+      date:new Date().toLocaleDateString('en-IN'),
+      time:new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}),
+      inr:val,paidRate:paidRate,lkrPaid:paidRate>0?(val*paidRate):0
+    });
+    const lkrStr=paidRate>0?' (ரு'+(val*paidRate).toFixed(0)+' @ '+paidRate+')':'';
+    showToast('✅ ₹'+val+' added'+lkrStr,'ok');
+    localStorage.setItem('u888_topups',JSON.stringify(walletTopups));
+  } else {
+    if(val>wallets[wallet]){showToast('❌ Insufficient balance!','err');return;}
+    wallets[wallet]-=val;
+    showToast('➖ ₹'+val+' removed from '+wallet,'ok');
+  }
+  save(true);renderAll();
+  if(document.getElementById('page-wallet').classList.contains('active'))renderWalletManage();
+  closeModalDirect();
+}
+
+// ════════════════════════════════════════
+//  CREDIT COLLECT
+// ════════════════════════════════════════
+function unlockCreditProfit(name,collecting){
+  let remaining=collecting;
+  for(let r of records){
+    if(remaining<=0.001)break;
+    if(r.cust!==name||r.payment!=='Credit')continue;
+    const uncollected=r.incomeLKR-(r.creditCollected||0);
+    if(uncollected<=0.001)continue;
+    const payNow=Math.min(remaining,uncollected);
+    const profitUnlock=(payNow/r.incomeLKR)*(r.incomeLKR-r.costLKR);
+    r.profit=(r.profit||0)+Math.max(0,profitUnlock);
+    r.pendingProfit=Math.max(0,(r.pendingProfit||0)-Math.abs(profitUnlock));
+    r.creditCollected=(r.creditCollected||0)+payNow;
+    remaining-=payNow;
+    if(r.creditCollected>=r.incomeLKR-0.01)r.pendingProfit=0;
+  }
+}
+function openCollectModal(name){
+  collectTarget=name;
+  const due=credits[name]?credits[name].total:0;
+  document.getElementById('collect-title').textContent='💰 Collect from: '+name;
+  document.getElementById('collect-owed').textContent='ரு'+due.toFixed(2);
+  document.getElementById('collect-amount').value=due.toFixed(2);
+  document.getElementById('modal-collect').classList.add('open');
+}
+function closeCollectModal(e){if(e.target===document.getElementById('modal-collect'))closeCollectModalDirect();}
+function closeCollectModalDirect(){document.getElementById('modal-collect').classList.remove('open');collectTarget=null;}
+function confirmCollect(){
+  const val=parseFloat(document.getElementById('collect-amount').value);
+  if(!val||val<=0){showToast('⚠️ Enter amount!','err');return;}
+  if(!credits[collectTarget]){closeCollectModalDirect();return;}
+  const due=credits[collectTarget].total;
+  const collecting=Math.min(val,due);
+  unlockCreditProfit(collectTarget,collecting);
+  credits[collectTarget].total=Math.max(0,credits[collectTarget].total-collecting);
+  credits[collectTarget].entries.unshift({id:Date.now(),date:new Date().toLocaleDateString('en-IN'),amount:-collecting,note:'பணம் பெறப்பட்டது'});
+  if(credits[collectTarget].total<=0.01){
+    delete credits[collectTarget];
+    showToast('🎉 '+collectTarget+' fully paid! Profit added ✅','ok');
+  } else showToast('✅ ரு'+collecting.toFixed(0)+' collected | Remaining: ரு'+credits[collectTarget].total.toFixed(0),'ok');
+  save(true);renderCredit();renderAll();closeCollectModalDirect();
+}
+function collectCash(){
+  const name=document.getElementById('cc-name').value.trim();
+  const amount=parseFloat(document.getElementById('cc-amount').value);
+  if(!name){showToast('⚠️ Enter name!','err');return;}
+  if(!amount||amount<=0){showToast('⚠️ Enter amount!','err');return;}
+  if(!credits[name]){showToast('⚠️ No credit record for '+name+'!','err');return;}
+  const due=credits[name].total;
+  const collecting=Math.min(amount,due);
+  unlockCreditProfit(name,collecting);
+  credits[name].total=Math.max(0,credits[name].total-collecting);
+  credits[name].entries.unshift({id:Date.now(),date:new Date().toLocaleDateString('en-IN'),amount:-collecting,note:'பணம் பெறப்பட்டது'});
+  if(credits[name].total<=0.01){delete credits[name];showToast('🎉 '+name+' fully paid!','ok');}
+  else showToast('✅ Collected ரு'+collecting.toFixed(0)+' | Remaining: ரு'+credits[name].total.toFixed(0),'ok');
+  invalidatePendingCache();save(true);document.getElementById('cc-name').value='';document.getElementById('cc-amount').value='';
+  renderCredit();renderAll();
+}
+
+// ════════════════════════════════════════
+//  CASH PENDING COLLECT
+// ════════════════════════════════════════
+function unlockPendingProfit(name,collecting){
+  let remaining=collecting;
+  for(let r of records){
+    if(remaining<=0.001)break;
+    if(r.cust!==name)continue;
+    const pending=(typeof r.pendingProfit==='number')?r.pendingProfit:0;
+    const uncollected=r.incomeLKR-(r.cashCollected||0);
+    if(r.payment==='CashPending'&&pending>0.001&&uncollected>0.001){
+      const payNow=Math.min(remaining,uncollected);
+      const fraction=payNow/r.incomeLKR;
+      const profitUnlock=fraction*(r.incomeLKR-r.costLKR);
+      r.profit=(r.profit||0)+Math.max(0,profitUnlock);
+      r.pendingProfit=Math.max(0,pending-Math.abs(profitUnlock));
+      r.cashCollected=(r.cashCollected||0)+payNow;
+      remaining-=payNow;
+      if(r.pendingProfit<=0.01&&r.cashCollected>=r.incomeLKR-0.01){r.payment='Cash';r.pendingProfit=0;}
+    }
+  }
+}
+function collectCashPending(){
+  const name=document.getElementById('cp-name').value.trim();
+  const amount=parseFloat(document.getElementById('cp-amount').value);
+  if(!name){showToast('⚠️ Enter name!','err');return;}
+  if(!amount||amount<=0){showToast('⚠️ Enter amount!','err');return;}
+  if(!cashPendings[name]){showToast('⚠️ No pending record for '+name+'!','err');return;}
+  const due=cashPendings[name].total;
+  const collecting=Math.min(amount,due);
+  unlockPendingProfit(name,collecting);
+  cashPendings[name].total=Math.max(0,cashPendings[name].total-collecting);
+  cashPendings[name].entries.unshift({id:Date.now(),date:new Date().toLocaleDateString('en-IN'),amount:-collecting,note:'பணம் பெறப்பட்டது'});
+  if(cashPendings[name].total<=0.01){delete cashPendings[name];showToast('🎉 '+name+' fully paid!','ok');}
+  else showToast('✅ Collected ரு'+collecting.toFixed(0)+' | Remaining: ரு'+cashPendings[name].total.toFixed(0),'ok');
+  invalidatePendingCache();save(true);document.getElementById('cp-name').value='';document.getElementById('cp-amount').value='';
+  renderCashPending();renderAll();
+}
+function openCollectCPModal(name){
+  collectCPTarget=name;
+  const due=cashPendings[name]?cashPendings[name].total:0;
+  document.getElementById('collect-cp-title').textContent='💵 Collect Cash from: '+name;
+  document.getElementById('collect-cp-owed').textContent='ரு'+due.toFixed(2);
+  document.getElementById('collect-cp-amount').value=due.toFixed(2);
+  document.getElementById('modal-collect-cp').classList.add('open');
+}
+function closeCollectCPModal(e){if(e.target===document.getElementById('modal-collect-cp'))closeCollectCPModalDirect();}
+function closeCollectCPModalDirect(){document.getElementById('modal-collect-cp').classList.remove('open');collectCPTarget=null;}
+function confirmCollectCP(){
+  const val=parseFloat(document.getElementById('collect-cp-amount').value);
+  if(!val||val<=0){showToast('⚠️ Enter amount!','err');return;}
+  if(!cashPendings[collectCPTarget]){closeCollectCPModalDirect();return;}
+  const due=cashPendings[collectCPTarget].total;
+  const collecting=Math.min(val,due);
+  unlockPendingProfit(collectCPTarget,collecting);
+  cashPendings[collectCPTarget].total=Math.max(0,cashPendings[collectCPTarget].total-collecting);
+  cashPendings[collectCPTarget].entries.unshift({id:Date.now(),date:new Date().toLocaleDateString('en-IN'),amount:-collecting,note:'பணம் பெறப்பட்டது'});
+  if(cashPendings[collectCPTarget].total<=0.01){delete cashPendings[collectCPTarget];showToast('🎉 Fully paid!','ok');}
+  else showToast('✅ Collected ரு'+collecting.toFixed(0)+' | Remaining: ரு'+cashPendings[collectCPTarget].total.toFixed(0),'ok');
+  invalidatePendingCache();save(true);renderCashPending();renderAll();closeCollectCPModalDirect();
+}
+function deleteCashPend(name){
+  if(!confirm('Clear cash pending for '+name+'?'))return;
+  records.forEach(r=>{if(r.cust===name&&r.payment==='CashPending'){r.profit=r.pendingProfit||0;r.pendingProfit=0;r.payment='Cash';}});
+  delete cashPendings[name];invalidatePendingCache();save(true);renderCashPending();renderAll();
+  showToast('✅ '+name+' pending cleared','ok');
+}
+function deleteCredit(name){
+  if(!confirm('Clear all credit for '+name+'?'))return;
+  delete credits[name];invalidatePendingCache();save(true);renderCredit();
+  showToast('✅ '+name+' credit cleared','ok');
+}
+
+// ════════════════════════════════════════
+//  DELETE RECORD
+// ════════════════════════════════════════
+function deleteRecord(id){
+  if(!confirm('Delete this record?'))return;
+  const rec=records.find(r=>r.id===id);
+  if(rec){
+    // Restore only what was actually deducted from the wallet
+    const deducted=typeof rec.actualDeduct==='number'?rec.actualDeduct:rec.costINR;
+    wallets[rec.wallet]=(wallets[rec.wallet]||0)+deducted;
+    // Reverse auto-commission if it was recorded
+    if(rec.walletComm>0&&commissionCompanies[rec.wallet]){
+      const c=commissionCompanies[rec.wallet];
+      // Remove the matching auto commission entry
+      const idx=c.entries.findIndex(e=>e.note&&e.note.includes(rec.cust)&&Math.abs(e.amount-rec.walletComm)<0.01);
+      if(idx>=0){c.totalEarned=Math.max(0,(c.totalEarned||0)-c.entries[idx].amount);c.entries.splice(idx,1);}
+      if(!c.entries.length)delete commissionCompanies[rec.wallet];
+    }
+    if(rec.payment==='Credit'&&credits[rec.cust]){credits[rec.cust].total-=rec.incomeLKR;if(credits[rec.cust].total<=0.01)delete credits[rec.cust];}
+    if(rec.payment==='CashPending'&&cashPendings[rec.cust]){cashPendings[rec.cust].total-=rec.incomeLKR;if(cashPendings[rec.cust].total<=0.01)delete cashPendings[rec.cust];}
+    records=records.filter(r=>r.id!==id);
+    invalidatePendingCache();invalidateUsageCache();
+    save(true);renderAll();renderHistory();renderCredit();renderCashPending();
+    showToast('🗑️ Deleted, balance restored','ok');
+  }
+}
+
+// ════════════════════════════════════════
+//  RENDER ALL
+// ════════════════════════════════════════
+// Single rAF batch with dirty-flag — prevents double render when multiple saves fire
+let _renderPending=false;
+function renderAll(){
+  if(_renderPending)return;
+  _renderPending=true;
+  requestAnimationFrame(()=>{_renderPending=false;_renderAllNow();});
+}
+function _renderAllNow(){
+  // ── READ phase ──
+  const pendingIds=getPendingIds();
+  function isPending(r){return r.payment==='CashPending'||r.payment==='Credit'||pendingIds.has(r.id);}
+  function collectedAmt(r){return r.payment==='Credit'?r.creditCollected||0:r.cashCollected||0;}
+  let tc=0,tp=0,ti=0;
+  for(const r of records){
+    tc+=r.costINR;
+    if(isPending(r)){const c=collectedAmt(r);if(c>0){tp+=(c/r.incomeLKR)*(r.incomeLKR-r.costLKR);ti+=c;}}
+    else{tp+=r.profit||0;ti+=r.incomeLKR;}
+  }
+  const totalPend=Object.values(cashPendings).reduce((s,v)=>s+v.total,0);
+  const walletEntries=Object.entries(wallets);
+  const walletNames=Object.keys(wallets);
+
+  // ── WRITE phase (all DOM writes batched here) ──
+  // Summary
+  $('sum-income').textContent='ரு'+fmtI(ti);
+  $('sum-income-inr').textContent='≈₹'+fmtI(ti/(sellRate||buyRate||1));
+  $('sum-cost').textContent='₹'+fmtI(tc);
+  const pe=$('sum-profit');
+  pe.textContent='ரு'+fmtI(tp);
+  pe.style.color=tp>=0?'var(--green)':'var(--red)';
+  const pendEl=$('sum-cashpend');
+  if(pendEl){pendEl.textContent=totalPend>0?'ரு'+fmtI(totalPend)+' 🕐':'—';pendEl.style.color=totalPend>0?'var(--pink)':'var(--textD)';}
+
+  // Wallets
+  const container=$('wallet-display');
+  if(!walletEntries.length){
+    container.innerHTML='<div class="empty" style="grid-column:span 2">No wallets yet<br><small>Add wallets in Wallet tab</small></div>';
+  } else {
+    let html='';
+    for(let i=0;i<walletEntries.length;i++){
+      const [name,bal]=walletEntries[i];
+      const low=bal<500;const color=wColor(name);
+      html+=`<div class="wallet-card" style="border-left-color:${color}">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div class="wname" style="color:${color}">${name}</div>
+          <button data-waction="del" data-widx="${i}" class="wbtn" style="background:rgba(255,82,82,0.1);color:var(--red);border:1px solid rgba(255,82,82,0.2);padding:3px 8px;font-size:12px;border-radius:7px">🗑️</button>
+        </div>
+        <div class="wbal${low?' low':''}" style="color:${low?'var(--red)':color}">₹${fmtI(bal)}</div>
+        <div class="wstatus">${bal>2000?'✅ Good':bal>500?'⚠️ Low':'🔴 Refill!'}</div>
+        <div class="wcard-btns">
+          <button data-waction="add" data-widx="${i}" class="wbtn wbtn-add">➕ Top Up</button>
+          <button data-waction="rem" data-widx="${i}" class="wbtn wbtn-rem">➖ Remove</button>
+        </div>
+      </div>`;
+    }
+    container.innerHTML=html;
+    // Attach events via delegation on container (single listener)
+    container.onclick=function(e){
+      const btn=e.target.closest('button[data-waction]');
+      if(!btn)return;
+      e.stopPropagation();
+      const wname=walletNames[parseInt(btn.getAttribute('data-widx'))];
+      if(!wname)return;
+      const action=btn.getAttribute('data-waction');
+      if(action==='del')deleteWallet(wname);
+      else if(action==='add')openModal('add',wname);
+      else openModal('remove',wname);
+    };
+  }
+  refreshWalletSelect();
+}
+
+function renderAllWithSelect(){
+  renderAll();
+}
+
+function renderWalletManage(){
+  const el=document.getElementById('wallet-manage');
+  const keys=Object.keys(wallets);
+  if(!keys.length){el.innerHTML='<div class="empty">No wallets<span class="ta">பணப்பை இல்லை</span></div>';return;}
+  const usage=getWalletUsage(); // read cache once
+  el.innerHTML=keys.map(name=>{
+    const bal=wallets[name];const low=bal<500;const color=wColor(name);const bg=wBg(name);
+    const used=usage[name]||0;
+    const topups=walletTopups[name]||[];
+    const commRate=walletCommRates[name]||0;
+    const commPct=(commRate*100).toFixed(3).replace(/\.?0+$/,'');
+    const topupRows=topups.slice(0,3).map(t=>
+      `<div style="display:flex;justify-content:space-between;font-size:9px;padding:4px 0;border-bottom:1px solid var(--border)">
+        <span style="color:var(--textD)">${t.date} ${t.time}${t.note?' • '+t.note:''}</span>
+        <span style="font-weight:800;color:var(--green);font-family:var(--mono)">+₹${fmtD(t.inr)}</span>
+        <span style="color:var(--accent);font-weight:700">${t.paidRate?'@ ரு'+fmtD(t.paidRate):'—'}</span>
+      </div>`
+    ).join('');
+    return `<div class="w-manage-card" style="border-left-color:${color}">
+      <div class="wm-top">
+        <div><div class="wm-name">${name}</div><div style="font-size:9px;color:var(--textD)">Used: ₹${fmtI(used)}</div></div>
+        <div class="wm-bal${low?' low':''}" style="color:${low?'var(--red)':color}">₹${fmtI(bal)}</div>
+      </div>
+      <div style="font-size:10px;text-align:center;padding:7px;border-radius:9px;background:${bg};margin-bottom:8px;font-weight:700">
+        ${bal>2000?'✅ Balance good':bal>500?'⚠️ Balance low':'🔴 Refill now!'}
+      </div>
+      <div style="background:rgba(0,230,118,0.07);border:1px solid rgba(0,230,118,0.18);border-radius:10px;padding:9px 12px;margin-bottom:8px">
+        <div style="font-size:9px;font-weight:800;color:var(--green);margin-bottom:6px">💰 Wallet Commission Rate / கமிஷன் விகிதம்</div>
+        <div style="display:flex;align-items:center;gap:7px">
+          <input type="number" id="wcr-${name.replace(/\s/g,'_')}" value="${commPct||''}" placeholder="0 = No commission" step="0.001" min="0" max="10"
+            style="flex:1;background:var(--surface3);border:1.5px solid var(--border2);border-radius:9px;color:var(--text);padding:7px 10px;font-size:12px;font-family:var(--mono);outline:none">
+          <span style="font-size:10px;color:var(--textD);white-space:nowrap">%</span>
+          <button onclick="saveWalletCommRate('${name}')" style="background:rgba(0,230,118,0.15);border:1px solid rgba(0,230,118,0.3);color:var(--green);border-radius:9px;padding:7px 12px;font-size:10px;font-weight:800;cursor:pointer;font-family:var(--sans)">Save</button>
+        </div>
+        ${commRate>0?`<div style="font-size:9px;color:var(--textD);margin-top:5px">✅ e.g. ₹500 recharge → wallet deducts ₹${(500-500*commRate).toFixed(2)}, you earn ₹${(500*commRate).toFixed(2)} commission</div>`:'<div style="font-size:9px;color:var(--textD);margin-top:4px">Set % if your wallet gives back commission on recharges</div>'}
+      </div>
+      ${topupRows?`<div style="margin-bottom:8px"><div style="font-size:8.5px;font-weight:800;color:var(--textD);text-transform:uppercase;margin-bottom:4px">📥 Top-up History</div>${topupRows}</div>`:''}
+      <div class="wm-btns">
+        <button class="btn-sm gadd" onclick="openModal('add','${name}')">➕ Top Up</button>
+        <button class="btn-sm grem" style="background:rgba(245,166,35,0.1);color:var(--accent);border-color:rgba(245,166,35,0.2)" onclick="openModal('remove','${name}')">➖ Remove</button>
+        <button class="btn-sm grem" onclick="deleteWallet('${name}')">🗑️ Delete</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function saveWalletCommRate(name){
+  const inputId='wcr-'+name.replace(/\s/g,'_');
+  const pct=parseFloat(document.getElementById(inputId).value)||0;
+  if(pct<0||pct>10){showToast('⚠️ Rate must be 0–10%','err');return;}
+  if(pct>0) walletCommRates[name]=parseFloat((pct/100).toFixed(6));
+  else delete walletCommRates[name];
+  save(true);renderWalletManage();
+  showToast(pct>0?'✅ '+name+' commission: '+pct+'%':'✅ Commission rate removed for '+name,'ok');
+}
+
+// ── HISTORY PAGINATION ──
+let _histPage=0;const _HIST_PER_PAGE=30;
+
+function renderHistory(){
+  _histPage=0;
+  _renderHistoryPage(true);
+}
+
+function _renderHistoryPage(reset){
+  const el=document.getElementById('history-list');
+  if(!records.length){el.innerHTML='<div class="empty">No recharges yet<span class="ta">இன்னும் ரீசார்ஜ் இல்லை</span></div>';return;}
+  const start=_histPage*_HIST_PER_PAGE;
+  const slice=records.slice(start,start+_HIST_PER_PAGE);
+  // Use array + join for fastest string build
+  const parts=new Array(slice.length);
+  for(let i=0;i<slice.length;i++){
+    const r=slice[i];
+    const color=wColor(r.wallet);const bg=wBg(r.wallet);
+    const payClass=r.payment==='Credit'?'pay-credit':r.payment==='CashPending'?'pay-cashpend':'pay-cash';
+    const payLabel=r.payment==='CashPending'?'🕐 Cash Pending':r.payment;
+    parts[i]=`<div class="hist-item ${r.payment==='Credit'?'credit-entry':r.payment==='CashPending'?'cashpend-entry':''}">
+      <div class="hist-left">
+        <div class="hcust">${r.cust} <span class="badge" style="background:${bg};color:${color}">${r.wallet}</span> <span class="pay-badge ${payClass}">${payLabel}</span></div>
+        <div class="hdetail">${r.operator} • ${r.mobile||'-'}${r.dthNum?' • 🆔 '+r.dthNum:''}</div>
+        <div class="hdetail">${r.date} ${r.time}</div>
+        <div class="hdetail" style="font-family:var(--mono)">₹${r.costINR} @ ரு${r.buyRate||'?'} → ரு${r.costLKR.toFixed(0)} cost</div>
+        <div class="hdetail" style="font-family:var(--mono)">Charged: ரு${r.incomeLKR}${r.pendingProfit>0?' | 🕐 Pending: ரு'+r.pendingProfit.toFixed(0):''}${r.walletComm>0?' | 💰 WComm: ₹'+r.walletComm.toFixed(2):''}</div>
+      </div>
+      <div class="hist-right">
+        <div class="hprofit${r.profit<0?' neg':''}">${r.pendingProfit>0?'🕐 ':''}ரு${r.profit.toFixed(0)}</div>
+        <div class="hamt">Profit</div>
+        <button class="del-btn" onclick="deleteRecord(${r.id})">🗑️</button>
+      </div>
+    </div>`;
+  }
+  const html=parts.join('');
+  if(reset){
+    el.innerHTML=html;
+  } else {
+    const old=document.getElementById('hist-load-more');
+    if(old)old.remove();
+    el.insertAdjacentHTML('beforeend',html);
+  }
+  // Load-more button
+  const existing=document.getElementById('hist-load-more');
+  if(existing)existing.remove();
+  const shown=(_histPage+1)*_HIST_PER_PAGE;
+  if(shown<records.length){
+    const btn=document.createElement('button');
+    btn.id='hist-load-more';
+    btn.className='btn';
+    btn.style.cssText='margin:8px 14px 4px;width:calc(100% - 28px);background:var(--surface2);color:var(--textM);border:1px solid var(--border2);font-size:11px';
+    btn.textContent=`⬇️ Load more (${records.length-shown} remaining)`;
+    btn.onclick=()=>{_histPage++;_renderHistoryPage(false);};
+    el.appendChild(btn);
+  }
+}
+
+function renderCredit(){
+  const el=document.getElementById('credit-list');
+  const entries=Object.entries(credits);
+  const totalDue=entries.reduce((s,[,v])=>s+v.total,0);
+  document.getElementById('total-credit-due').textContent='ரு'+totalDue.toFixed(2);
+  if(!entries.length){el.innerHTML='<div class="empty">No credit entries<span class="ta">கடன் பதிவுகள் இல்லை 🎉</span></div>';return;}
+  el.innerHTML=entries.map(([name,data])=>{
+    const recent=data.entries.slice(0,3).map(e=>`<div style="font-size:9px;color:var(--textD);padding:2px 0">${e.date} — ${e.note} — <b style="color:${e.amount>0?'var(--accent)':'var(--green)'};font-family:var(--mono)">${e.amount>0?'+':''}ரு${Math.abs(e.amount).toFixed(0)}</b></div>`).join('');
+    return `<div class="credit-item">
+      <div class="ci-top"><div class="ci-name">👤 ${name}</div><div class="ci-owe">ரு${data.total.toFixed(2)}</div></div>
+      <div class="ci-detail">Amount owed to you / உங்களுக்கு கடன்</div>
+      <div style="margin:6px 0">${recent}</div>
+      <div class="ci-btns">
+        <button class="btn-sm gadd" onclick="openCollectModal('${name}')">💵 Collect</button>
+        <button class="btn-sm grem" onclick="deleteCredit('${name}')">🗑️ Clear</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderCashPending(){
+  const el=document.getElementById('cashpend-list');
+  const entries=Object.entries(cashPendings);
+  const totalDue=entries.reduce((s,[,v])=>s+v.total,0);
+  document.getElementById('total-cashpend-due').textContent='ரு'+totalDue.toFixed(2);
+  if(!entries.length){el.innerHTML='<div class="empty">பணம் நிலுவை இல்லை 🎉<span class="ta">No pending cash</span></div>';return;}
+  el.innerHTML=entries.map(([name,data])=>{
+    const recent=data.entries.slice(0,3).map(e=>`<div style="font-size:9px;color:var(--textD);padding:2px 0">${e.date} — ${e.note} — <b style="color:${e.amount>0?'var(--pink)':'var(--green)'};font-family:var(--mono)">${e.amount>0?'+':''}ரு${Math.abs(e.amount).toFixed(0)}</b></div>`).join('');
+    return `<div class="cashpend-item">
+      <div class="cp-top"><div class="cp-name">👤 ${name}</div><div class="cp-owe">ரு${data.total.toFixed(2)}</div></div>
+      <div class="cp-detail">💵 Cash NOT yet received / பணம் கிடைக்கவில்லை</div>
+      <div style="margin:6px 0">${recent}</div>
+      <div class="cp-btns">
+        <button class="btn-sm gadd" onclick="openCollectCPModal('${name}')">💵 Collect</button>
+        <button class="btn-sm grem" onclick="deleteCashPend('${name}')">🗑️ Clear</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ════════════════════════════════════════
+//  REPORT & PRINT
+// ════════════════════════════════════════
+function renderReport(){
+  const today=new Date().toLocaleDateString('en-IN');
+  const pendingIds=getPendingIds();
+  function isPendingRec(r){return r.payment==='CashPending'||r.payment==='Credit'||pendingIds.has(r.id);}
+  function collectedAmt(r){return r.payment==='Credit'?r.creditCollected||0:r.cashCollected||0;}
+  function calcProfit2(r){if(isPendingRec(r)){const c=collectedAmt(r);return c>0?(c/r.incomeLKR)*(r.incomeLKR-r.costLKR):0;}return r.profit||0;}
+  function calcIncome2(r){return isPendingRec(r)?collectedAmt(r):r.incomeLKR;}
+  // Single pass for all-time stats
+  let allProfit=0,allLKR=0,allINR=0;
+  const tRec=[];const wStats={};
+  for(const r of records){
+    const p=calcProfit2(r),i=calcIncome2(r);
+    allProfit+=p;allLKR+=i;allINR+=r.costINR;
+    if(r.date===today)tRec.push(r);
+    if(!wStats[r.wallet])wStats[r.wallet]={count:0,cost:0};
+    wStats[r.wallet].count++;wStats[r.wallet].cost+=r.costINR;
+  }
+  const tProfit=tRec.reduce((s,r)=>s+calcProfit2(r),0);
+  const tLKR=tRec.reduce((s,r)=>s+calcIncome2(r),0);
+  const totalCredit=Object.values(credits).reduce((s,v)=>s+v.total,0);
+  const totalCP=Object.values(cashPendings).reduce((s,v)=>s+v.total,0);
+
+  document.getElementById('report-content').innerHTML=`
+    <!-- PRINT HEADER -->
+    <div id="print-header" style="display:none">
+      <div style="text-align:center;padding:16px 0 10px;border-bottom:2px solid #ccc;margin-bottom:12px">
+        <div style="font-size:20px;font-weight:900;letter-spacing:1px">📡 DTH ACCOUNTS</div>
+        <div style="font-size:12px">DTH ACCOUNTS TRACKER</div>
+        <div style="font-size:11px;color:#555">Report Generated: ${new Date().toLocaleString('en-IN')} | User: ${currentUser}</div>
+      </div>
+    </div>
+
+    <!-- TODAY -->
+    <div class="form-card" style="margin-bottom:10px">
+      <h3>🗓️ Today / இன்று — ${today}</h3>
+      <div class="report-grid">
+        <div class="r-card"><div class="rl">Recharges<span class="ta">ரீசார்ஜ்</span></div><div class="rv blue-c">${tRec.length}</div></div>
+        <div class="r-card"><div class="rl">Today Profit<span class="ta">இன்றைய லாபம்</span></div><div class="rv">ரு${tProfit.toFixed(0)}</div></div>
+        <div class="r-card"><div class="rl">Today Revenue<span class="ta">வருமானம்</span></div><div class="rv lkr-c">ரு${tLKR.toFixed(0)}</div></div>
+        <div class="r-card"><div class="rl">Credit Pending<span class="ta">நிலுவைக் கடன்</span></div><div class="rv orange-c">ரு${totalCredit.toFixed(0)}</div></div>
+        <div class="r-card"><div class="rl">Cash Pending<span class="ta">பணம் நிலுவை</span></div><div class="rv pink-c">ரு${totalCP.toFixed(0)}</div></div>
+      </div>
+    </div>
+
+    <!-- ALL TIME -->
+    <div class="form-card" style="margin-bottom:10px">
+      <h3>📈 All Time / மொத்தம்</h3>
+      <div class="report-grid">
+        <div class="r-card"><div class="rl">Total Revenue<span class="ta">மொத்த வருமானம்</span></div><div class="rv lkr-c">ரு${allLKR.toFixed(0)}</div></div>
+        <div class="r-card"><div class="rl">Total Cost INR<span class="ta">மொத்த செலவு</span></div><div class="rv orange-c">₹${allINR.toFixed(0)}</div></div>
+        <div class="r-card"><div class="rl">Total Profit<span class="ta">மொத்த லாபம்</span></div><div class="rv">ரு${allProfit.toFixed(0)}</div></div>
+        <div class="r-card"><div class="rl">Total Records<span class="ta">மொத்த பதிவுகள்</span></div><div class="rv blue-c">${records.length}</div></div>
+      </div>
+    </div>
+
+    <!-- WALLETS -->
+    <div class="form-card" style="margin-bottom:10px">
+      <h3>💳 Current Wallets / பணப்பை நிலை</h3>
+      ${Object.entries(wallets).map(([w,bal])=>`
+        <div class="info-row">
+          <span class="ik"><span class="badge" style="background:${wBg(w)};color:${wColor(w)}">${w}</span></span>
+          <span class="iv" style="color:${wColor(w)};font-family:var(--mono)">₹${bal.toLocaleString('en-IN')}</span>
+        </div>`).join('')||'<div class="empty">No wallets</div>'}
+    </div>
+
+    <!-- WALLET USAGE -->
+    <div class="form-card" style="margin-bottom:10px">
+      <h3>📊 Wallet Usage / பணப்பை பயன்பாடு</h3>
+      ${Object.entries(wStats).map(([w,s])=>`
+        <div class="info-row">
+          <div><span class="badge" style="background:${wBg(w)};color:${wColor(w)}">${w}</span> ${s.count} recharges</div>
+          <div style="font-weight:800;color:var(--red);font-family:var(--mono)">-₹${s.cost.toLocaleString('en-IN')}</div>
+        </div>`).join('')||'<div class="empty">No data</div>'}
+    </div>
+
+    <!-- EXCHANGE RATES -->
+    <div class="form-card" style="margin-bottom:10px">
+      <h3>💱 Current Rates / தற்போதைய விகிதம்</h3>
+      <div class="report-grid">
+        <div class="r-card"><div class="rl">Buy Rate<span class="ta">வாங்கல்</span></div><div class="rv lkr-c">ரு${buyRate?buyRate.toFixed(2):'-'}</div></div>
+        <div class="r-card"><div class="rl">Sell Rate<span class="ta">விற்பனை</span></div><div class="rv">ரு${sellRate?sellRate.toFixed(2):'-'}</div></div>
+      </div>
+    </div>
+
+    <!-- RECENT RECORDS -->
+    <div class="form-card" style="margin-bottom:10px">
+      <h3>📋 Recent Recharges (Last 10) / சமீபத்திய பதிவுகள்</h3>
+      ${records.slice(0,10).map(r=>`
+        <div style="padding:8px 0;border-bottom:1px solid var(--border);font-size:11px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div>
+              <span style="font-weight:800">${r.cust}</span> — ${r.operator}<br>
+              <span style="color:var(--textD)">${r.date} ${r.time} | ${r.wallet} | ${r.payment}</span>
+            </div>
+            <div style="text-align:right;font-family:var(--mono)">
+              <span style="color:var(--green);font-weight:800">ரு${r.profit.toFixed(0)}</span><br>
+              <span style="color:var(--textD);font-size:9px">₹${r.costINR}</span>
+            </div>
+          </div>
+        </div>`).join('')||'<div class="empty">No records</div>'}
+    </div>
+
+    <!-- PRINT & SAVE BUTTONS -->
+    <div class="form-card" style="margin-bottom:10px">
+      <h3>🏆 Commission Summary / கமிஷன் சுருக்கம்</h3>
+      ${Object.keys(commissionCompanies).length?`
+      <div style="margin-bottom:8px;background:rgba(68,138,255,0.08);border:1px solid rgba(68,138,255,0.2);border-radius:10px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center">
+        <span style="font-size:11px;font-weight:700;color:var(--blue)">Total Commission Earned</span>
+        <span style="font-size:16px;font-weight:800;color:var(--blue);font-family:var(--mono)">₹${Object.values(commissionCompanies).reduce((s,v)=>s+(v.totalEarned||0),0).toFixed(2)}</span>
+      </div>
+      ${Object.entries(commissionCompanies).map(([name,data])=>`
+        <div class="info-row">
+          <div><span style="font-weight:800">${name}</span><br><span style="font-size:9px;color:var(--textD)">${data.entries.length} payment(s)</span></div>
+          <span style="font-weight:800;color:var(--green);font-family:var(--mono)">₹${(data.totalEarned||0).toFixed(2)}</span>
+        </div>`).join('')}`
+      :'<div class="empty">No commission data</div>'}
+    </div>
+
+    <!-- PRINT & SAVE BUTTONS -->
+    <div class="form-card" style="margin-bottom:10px">
+      <h3>🖨️ Print & Save / அச்சிடு & சேமி</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
+        <button class="btn btn-teal" onclick="printReport()">🖨️ Print Report</button>
+        <button class="btn btn-purple" onclick="saveJSON()">💾 Save Data (JSON)</button>
+      </div>
+      <button class="btn btn-orange" onclick="exportCSV()" style="margin-bottom:8px">📊 Export CSV</button>
+      <button class="btn btn-primary" onclick="copyReport()">📋 Copy Report Text</button>
+    </div>
+  `;
+}
+
+function printReport(){
+  document.getElementById('print-header').style.display='block';
+  window.print();
+  setTimeout(()=>document.getElementById('print-header').style.display='none',500);
+}
+
+function saveJSON(){
+  const data={
+    exported:new Date().toISOString(),
+    user:currentUser,
+    wallets,records,credits,cashPendings,
+    buyRate,sellRate,
+    walletTopups
+  };
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download='DTH_ACCOUNTS_Data_'+new Date().toLocaleDateString('en-IN').replace(/\//g,'-')+'.json';
+  a.click();URL.revokeObjectURL(url);
+  showToast('💾 Data saved as JSON file!','ok');
+}
+
+function exportCSV(){
+  if(!records.length){showToast('⚠️ No records to export!','err');return;}
+  const headers=['Date','Time','Customer','Mobile','Operator','Wallet','Payment','Cost INR','Income LKR','Cost LKR','Profit LKR','Buy Rate','Sell Rate'];
+  const rows=records.map(r=>[r.date,r.time,r.cust,r.mobile||'',r.operator,r.wallet,r.payment,r.costINR,r.incomeLKR,r.costLKR.toFixed(2),r.profit.toFixed(2),r.buyRate,r.sellRate]);
+  const csv=[headers,...rows].map(row=>row.map(v=>'"'+(String(v)).replace(/"/g,'""')+'"').join(',')).join('\n');
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download='DTH_ACCOUNTS_Records_'+new Date().toLocaleDateString('en-IN').replace(/\//g,'-')+'.csv';
+  a.click();URL.revokeObjectURL(url);
+  showToast('📊 CSV exported! '+records.length+' records','ok');
+}
+
+function copyReport(){
+  const allProfit=records.reduce((s,r)=>s+(r.profit||0),0);
+  const allINR=records.reduce((s,r)=>s+r.costINR,0);
+  const totalCP=Object.values(cashPendings).reduce((s,v)=>s+v.total,0);
+  const totalCredit=Object.values(credits).reduce((s,v)=>s+v.total,0);
+  const walletInfo=Object.entries(wallets).map(([w,b])=>`  ${w}: ₹${b.toLocaleString('en-IN')}`).join('\n');
+  const text=`📡 DTH ACCOUNTS — Report
+Generated: ${new Date().toLocaleString('en-IN')}
+User: ${currentUser}
+═══════════════════════════════
+📊 SUMMARY
+  Total Records: ${records.length}
+  Total Profit: ரு${allProfit.toFixed(2)}
+  Total Cost (INR): ₹${allINR.toFixed(2)}
+  Credit Pending: ரு${totalCredit.toFixed(2)}
+  Cash Pending: ரு${totalCP.toFixed(2)}
+═══════════════════════════════
+💱 RATES
+  Buy Rate: ரு${buyRate?buyRate.toFixed(2):'-'}
+  Sell Rate: ரு${sellRate?sellRate.toFixed(2):'-'}
+  Margin: ரு${(buyRate&&sellRate)?(sellRate-buyRate).toFixed(2):'-'} per ₹1
+═══════════════════════════════
+💳 WALLETS
+${walletInfo}
+═══════════════════════════════
+DTH ACCOUNTS DTH ACCOUNTS TRACKER`;
+  navigator.clipboard.writeText(text).then(()=>showToast('📋 Report copied to clipboard!','ok')).catch(()=>showToast('❌ Copy failed','err'));
+}
+
+// ════════════════════════════════════════
+//  BACKUP & RESTORE
+// ════════════════════════════════════════
+function exportBackup(){
+  const data={
+    version:'u888_v1',
+    exportedAt:new Date().toISOString(),
+    wallets,records,credits,cashPendings,
+    buyRate,sellRate,commissionCompanies,
+    reinvestedProfit,walletCommRates,walletTopups,
+    creds,
+    businessName: localStorage.getItem('u888_biz')||''
+  };
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  const date=new Date().toLocaleDateString('en-IN').replace(/\//g,'-');
+  a.href=url;a.download='DTH_ACCOUNTS_backup_'+date+'.json';
+  document.body.appendChild(a);a.click();
+  setTimeout(()=>{URL.revokeObjectURL(url);a.remove()},500);
+  showToast('📥 Backup downloaded!','ok');
+}
+function importBackup(event){
+  const file=event.target.files[0];
+  if(!file){return;}
+  const statusEl=document.getElementById('restore-status');
+  const reader=new FileReader();
+  reader.onload=function(e){
+    try{
+      const data=JSON.parse(e.target.result);
+      if(!data.version||!data.version.startsWith('u888')){
+        statusEl.style.display='block';
+        statusEl.style.background='rgba(255,71,87,0.12)';
+        statusEl.style.border='1px solid rgba(255,71,87,0.3)';
+        statusEl.style.color='var(--red)';
+        statusEl.textContent='❌ Invalid backup file! / தவறான கோப்பு!';
+        return;
+      }
+      if(!confirm('⚠️ Restore this backup? Current data will be REPLACED!\nதற்போதைய தரவு மாற்றப்படும் — உறுதியா?'))return;
+      if(data.wallets) wallets=data.wallets;
+      if(data.records) records=data.records;
+      if(data.credits) credits=data.credits;
+      if(data.cashPendings) cashPendings=data.cashPendings;
+      if(data.buyRate!=null) buyRate=data.buyRate;
+      if(data.sellRate!=null) sellRate=data.sellRate;
+      if(data.commissionCompanies) commissionCompanies=data.commissionCompanies;
+      if(data.reinvestedProfit!=null) reinvestedProfit=data.reinvestedProfit;
+      if(data.walletCommRates) walletCommRates=data.walletCommRates;
+      if(data.walletTopups) walletTopups=data.walletTopups;
+      if(data.creds) {creds=data.creds;localStorage.setItem('u888_creds',JSON.stringify(creds));}
+      invalidatePendingCache();invalidateUsageCache();
+      save(true);
+      localStorage.setItem('u888_topups',JSON.stringify(walletTopups));
+      updateRateDisplay();renderAll();renderReport();renderCommission();
+      statusEl.style.display='block';
+      statusEl.style.background='rgba(0,245,160,0.1)';
+      statusEl.style.border='1px solid rgba(0,245,160,0.3)';
+      statusEl.style.color='var(--green)';
+      statusEl.textContent='✅ Backup restored successfully! / காப்புப்பிரதி வெற்றிகரமாக மீட்டெடுக்கப்பட்டது!';
+      showToast('✅ Data restored!','ok');
+    }catch(err){
+      statusEl.style.display='block';
+      statusEl.style.background='rgba(255,71,87,0.12)';
+      statusEl.style.border='1px solid rgba(255,71,87,0.3)';
+      statusEl.style.color='var(--red)';
+      statusEl.textContent='❌ Error reading file: '+err.message;
+    }
+  };
+  reader.readAsText(file);
+  event.target.value='';
+}
+
+// ════════════════════════════════════════
+//  CLEAR DATA
+// ════════════════════════════════════════
+function clearHistory(){
+  if(!confirm('Delete all recharge history?\nரீசார்ஜ் வரலாற்றை முழுவதும் நீக்கவா?\n(Wallets & Balances kept)'))return;
+  records=[];invalidatePendingCache();invalidateUsageCache();save(true);renderAll();renderReport();
+  showToast('🗑️ History cleared','ok');
+}
+function clearAll(){
+  if(!confirm('⚠️ DELETE ALL DATA? This cannot be undone!\nஅனைத்து தரவும் நீக்கப்படும்! உறுதியா?'))return;
+  if(!confirm('⚠️ FINAL CONFIRM — Really delete everything?'))return;
+  wallets={"Quick Pay":10000,"TS DTH":5000};records=[];credits={};cashPendings={};
+  walletTopups={};buyRate=0;sellRate=0;commissionCompanies={};reinvestedProfit=0;walletCommRates={};
+  invalidatePendingCache();invalidateUsageCache();
+  save(true);localStorage.removeItem('u888_topups');
+  updateRateDisplay();renderAll();renderReport();renderCommission();
+  showToast('💥 All data cleared','ok');
+}
+
+// ════════════════════════════════════════
+//  PROFIT CONVERTER (LKR → INR)
+// ════════════════════════════════════════
+function openConvertModal(){
+  const profit=calcTotalProfit();
+  document.getElementById('conv-total-lkr').textContent='ரு'+profit.toFixed(2);
+  const autoINR=buyRate>0?profit/buyRate:0;
+  document.getElementById('conv-auto-inr').textContent=buyRate>0?'₹'+autoINR.toFixed(2):'₹-';
+  // set quick rate buttons
+  document.getElementById('conv-btn-buy').dataset.rate=buyRate||'';
+  document.getElementById('conv-buy-label').textContent=buyRate?'ரு'+buyRate.toFixed(2):'ரு-';
+  document.getElementById('conv-btn-sell').dataset.rate=sellRate||'';
+  document.getElementById('conv-sell-label').textContent=sellRate?'ரு'+sellRate.toFixed(2):'ரு-';
+  const avg=buyRate&&sellRate?((buyRate+sellRate)/2):buyRate||sellRate||0;
+  document.getElementById('conv-btn-avg').dataset.rate=avg||'';
+  document.getElementById('conv-avg-label').textContent=avg?'ரு'+avg.toFixed(2):'ரு-';
+  // reset inputs
+  document.getElementById('conv-lkr-input').value='';
+  document.getElementById('conv-rate-input').value=buyRate||'';
+  document.getElementById('conv-result-box').style.display='none';
+  // auto calc if rate set
+  if(buyRate) calcConvert();
+  document.getElementById('modal-convert').classList.add('open');
+}
+function closeConvertModal(e){if(e.target===document.getElementById('modal-convert'))closeConvertModalDirect();}
+function closeConvertModalDirect(){document.getElementById('modal-convert').classList.remove('open');}
+
+function setConvRate(btn){
+  const r=parseFloat(btn.dataset.rate);
+  if(!r){showToast('⚠️ Rate not set yet!','err');return;}
+  document.getElementById('conv-rate-input').value=r.toFixed(2);
+  calcConvert();
+}
+
+function calcConvert(){
+  const lkr=parseFloat(document.getElementById('conv-lkr-input').value)||0;
+  const rate=parseFloat(document.getElementById('conv-rate-input').value)||0;
+  const box=document.getElementById('conv-result-box');
+  if(lkr>0&&rate>0){
+    const inr=lkr/rate;
+    box.style.display='block';
+    document.getElementById('conv-lkr-show').textContent=lkr.toFixed(2);
+    document.getElementById('conv-rate-show').textContent=rate.toFixed(2);
+    document.getElementById('conv-inr-result').textContent='₹'+inr.toFixed(2);
+  } else {
+    box.style.display='none';
+  }
+}
+
+// ════════════════════════════════════════
+//  COMMISSION SYSTEM
+// ════════════════════════════════════════
+function openCommModal(){
+  // populate wallet dropdown
+  const sel=document.getElementById('comm-modal-wallet');
+  const wKeys=Object.keys(wallets);
+  if(!wKeys.length){showToast('⚠️ No wallets found! Add a wallet first.','err');return;}
+  sel.innerHTML=wKeys.map(w=>`<option value="${w}">${w}</option>`).join('');
+  document.getElementById('comm-modal-amount').value='';
+  document.getElementById('comm-modal-note').value='';
+  document.getElementById('modal-commission').classList.add('open');
+}
+function closeCommModal(e){if(e.target===document.getElementById('modal-commission'))closeCommModalDirect();}
+function closeCommModalDirect(){document.getElementById('modal-commission').classList.remove('open');}
+
+function saveCommModal(){
+  const wallet=document.getElementById('comm-modal-wallet').value;
+  const amount=parseFloat(document.getElementById('comm-modal-amount').value);
+  const note=document.getElementById('comm-modal-note').value.trim()||new Date().toLocaleDateString('en-IN')+' commission';
+  if(!wallet){showToast('⚠️ Select a wallet!','err');return;}
+  if(!amount||amount<=0){showToast('⚠️ Enter valid amount!','err');return;}
+  if(!commissionCompanies[wallet]) commissionCompanies[wallet]={entries:[],totalEarned:0};
+  const now=new Date();
+  commissionCompanies[wallet].entries.unshift({
+    id:Date.now(),
+    date:now.toLocaleDateString('en-IN'),
+    time:now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}),
+    amount,note
+  });
+  commissionCompanies[wallet].totalEarned=(commissionCompanies[wallet].totalEarned||0)+amount;
+  save(true);
+  closeCommModalDirect();
+  renderCommission();
+  showToast('✅ Commission ₹'+amount.toFixed(2)+' saved for '+wallet,'ok');
+}
+
+function deleteCommissionEntry(wallet,id){
+  if(!confirm('Delete this commission entry?'))return;
+  const c=commissionCompanies[wallet];
+  if(!c)return;
+  const entry=c.entries.find(e=>e.id===id);
+  if(entry)c.totalEarned=Math.max(0,(c.totalEarned||0)-entry.amount);
+  c.entries=c.entries.filter(e=>e.id!==id);
+  if(!c.entries.length)delete commissionCompanies[wallet];
+  save(true);renderCommission();
+  showToast('🗑️ Entry deleted','ok');
+}
+
+function renderCommission(){
+  const companies=Object.entries(commissionCompanies);
+  const totalAll=companies.reduce((s,[,v])=>s+(v.totalEarned||0),0);
+  const totalEl=document.getElementById('total-commission');
+  if(totalEl)totalEl.textContent='₹'+totalAll.toFixed(2);
+  const el=document.getElementById('commission-list');
+  if(!el)return;
+  if(!companies.length){
+    el.innerHTML='<div class="empty">No commission recorded yet<span class="ta">கமிஷன் பதிவுகள் இல்லை</span></div>';
+    return;
+  }
+  el.innerHTML=companies.map(([wallet,data])=>{
+    const color=wColor(wallet);const bg=wBg(wallet);
+    const entries=data.entries.map(e=>`
+      <div class="comm-entry">
+        <div>
+          <div style="font-weight:700;color:var(--text);font-size:11px">${e.note}</div>
+          <div style="color:var(--textD);font-size:8.5px">${e.date} ${e.time}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-weight:800;color:var(--green);font-family:var(--mono)">+₹${e.amount.toFixed(2)}</span>
+          <button onclick="deleteCommissionEntry('${wallet}',${e.id})" style="background:none;border:none;color:var(--red);cursor:pointer;font-size:13px">🗑️</button>
+        </div>
+      </div>`).join('');
+    return `<div class="comm-company-card" style="border-left-color:${color}">
+      <div class="cc-top">
+        <div>
+          <div class="cc-name" style="color:${color}">💳 ${wallet}</div>
+          <div class="cc-detail">${data.entries.length} payment(s) / பதிவுகள்</div>
+        </div>
+        <div class="cc-rate">₹${(data.totalEarned||0).toFixed(2)}</div>
+      </div>
+      <div style="font-size:9px;color:var(--textD);margin-top:2px;margin-bottom:8px">Total commission / மொத்த கமிஷன்</div>
+      <div style="background:var(--surface2);border-radius:10px;padding:8px 10px">${entries}</div>
+    </div>`;
+  }).join('');
+}
+
+// ════════════════════════════════════════
+//  TOAST
+// ════════════════════════════════════════
+function showToast(msg,type=''){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.className='toast';
+  if(type==='ok')t.classList.add('ok');
+  if(type==='err')t.classList.add('err');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+// ════════════════════════════════════════
+//  DATA REPAIR ON LOAD
+// ════════════════════════════════════════
+(function repairDeferredRecords(){
+  // Fast early exit — skip if no deferred records at all
+  const hasDeferred=records.some(r=>r.payment==='CashPending'||r.payment==='Credit');
+  if(!hasDeferred)return;
+  let repaired=false;
+  for(const r of records){
+    if(r.payment==='CashPending'){
+      const collected=(typeof r.cashCollected==='number')?r.cashCollected:0;
+      const trueProfit=(r.incomeLKR||0)-(r.costLKR||0);
+      if(collected<=0){r.profit=0;r.pendingProfit=trueProfit;r.cashCollected=0;}
+      else{const frac=Math.min(collected/r.incomeLKR,1);r.profit=frac*trueProfit;r.pendingProfit=trueProfit-r.profit;}
+      repaired=true;
+    } else if(r.payment==='Credit'){
+      const collected=(typeof r.creditCollected==='number')?r.creditCollected:0;
+      const trueProfit=(r.incomeLKR||0)-(r.costLKR||0);
+      if(collected<=0){r.profit=0;r.pendingProfit=trueProfit;r.creditCollected=0;}
+      else{const frac=Math.min(collected/r.incomeLKR,1);r.profit=frac*trueProfit;r.pendingProfit=trueProfit-r.profit;}
+      repaired=true;
+    }
+  }
+  if(repaired)save(true);
+})();
+
+// ════════════════════════════════════════
+//  INIT (stays on login screen)
+// ════════════════════════════════════════
+updateRateDisplay();
+
+// Load saved business name on page start
+(function initBiz(){
+  const saved = localStorage.getItem('u888_biz');
+  if(saved){
+    const inp = document.getElementById('login-biz');
+    if(inp) inp.value = saved;
+    _updateBizDisplay(saved);
+  }
+})();
+
+// Show login if account exists, else signup
+(function initLoginView(){
+  const hasCreds=localStorage.getItem('u888_creds');
+  switchTab(hasCreds?'login':'signup');
+})();
+
+// Remove 300ms tap delay on mobile
+document.addEventListener('touchstart',function(){},{passive:true});
+// Passive scroll + resize for zero jank
+document.getElementById('page-scroll-area')&&document.getElementById('page-scroll-area').addEventListener('scroll',function(){},{passive:true});
+
+// Enter key handlers — null-safe
+(function setupKeyHandlers(){
+  const handlers=[
+    ['login-biz',  function(e){if(e.key==='Enter'){const el=document.getElementById('login-id');if(el)el.focus();}}],
+    ['login-id',   function(e){if(e.key==='Enter')doLogin();}],
+    ['login-pwd',  function(e){if(e.key==='Enter')doLogin();}],
+  ];
+  handlers.forEach(([id,fn])=>{
+    const el=document.getElementById(id);
+    if(el) el.addEventListener('keydown',fn,{passive:true});
+  });
+})();
+</script>
+</body>
+</html>
